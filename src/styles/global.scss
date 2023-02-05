@@ -1,0 +1,88 @@
+.z1{
+  position: relative;
+  z-index: 1;
+}
+// 滚动条
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #d3dbeb;
+  border-radius: 10px;
+}
+:deep(.ant-pagination) {
+  display: none;
+}
+.ant-modal-content{
+  border-radius: 20px !important;
+  .ant-modal-header{
+    border-radius: 20px !important;
+    .ant-modal-title{
+      font-size: 20px !important;
+      font-weight: 700 !important;
+    }
+  }
+  .ant-modal-body {
+    max-height: 80%;
+    padding: 0 !important;
+    
+  }
+}
+
+
+.ant-input,.ant-picker {
+  border-radius: 10px;
+  width: 100%;
+}
+.ant-select {
+  :deep(.ant-select-selector){
+    border-radius: 10px;
+  }
+}
+:deep(.ant-switch-handle::before) {
+  background-color: #428777;
+}
+:deep(.ant-switch-checked) {
+  background-color: #999;
+  .ant-switch-handle::before{
+    background-color: #FE9874;
+  }
+}
+
+.btn,.btn-save{
+  border-color: #4cbc9a;
+  background: #4cbc9a;
+  border-radius: 8px;
+}
+.btn-submit{
+  border-color: #363B64;
+  background: #363B64;
+  border-radius: 8px;
+}
+.btn-cancel{
+  border-color: #A5A5A5;
+  background: #A5A5A5;
+  border-radius: 8px;
+}
+.box{
+  position: relative;
+  z-index: 10;
+  padding: 24px;
+  background-color: #fff;
+  border-radius: 20px;
+}
+.line-of {
+  overflow: hidden; 
+  text-overflow: ellipsis; 
+  white-space: nowrap;
+}
+@mixin mline-of($l) {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-line-clamp: $l;
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis; 
+}

@@ -1,0 +1,61 @@
+<script setup lang="ts">
+const userForm = reactive({
+  username: '',
+  name: '',
+  password: '',
+  phone: '',
+  email: '',
+  role: undefined
+})
+
+function handleSubmit() {
+  console.log(userForm)
+}
+</script>
+
+<template>
+  <a-form :model="userForm" name="basic" class="m16px">
+    <a-form-item name="avatar">
+      <Avatar />
+    </a-form-item>
+    <a-form-item name="username">
+      <a-input v-model:value="userForm.username" placeholder="用户名" />
+    </a-form-item>
+    <a-form-item name="name">
+      <a-input v-model:value="userForm.name" placeholder="姓名" />
+    </a-form-item>
+    <a-form-item name="password">
+      <a-input v-model:value="userForm.password" placeholder="密码" />
+    </a-form-item>
+    <a-form-item name="phone">
+      <a-input v-model:value="userForm.phone" placeholder="电话" />
+    </a-form-item>
+    <a-form-item name="email">
+      <a-input v-model:value="userForm.email" placeholder="邮箱" />
+    </a-form-item>
+    <a-form-item name="role">
+      <a-select v-model:value="userForm.role" placeholder="角色">
+        <a-select-option value="agent">代理商</a-select-option>
+        <a-select-option value="role2">角色2</a-select-option>
+        <a-select-option value="role3">角色3</a-select-option>
+      </a-select>
+    </a-form-item>
+    <a-form-item :wrapper-col="{ offset: 20, span: 16 }" class="mb0!">
+      <a-button @click="handleSubmit" type="primary" html-type="submit" class="btn-submit" size="large">提交</a-button>
+    </a-form-item>
+  </a-form>
+</template>
+
+<style lang="scss" scoped>
+.ant-form {
+  padding: 32px;
+  .state {
+    background-color: #f4f9fd;
+    padding: 16px;
+    border-radius: 14px;
+    :deep(.ant-form-item-control-input) {
+      margin-left: auto;
+    }
+  }
+}
+</style>
