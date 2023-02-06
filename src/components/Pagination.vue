@@ -5,18 +5,18 @@ const { total } = defineProps<{
 const pagination = reactive({
   pageSize: 8,
   current: 1,
-  total,
-  range: [] as number[]
+  total
 })
+const currentRange: number[] = [] // 不要用响应式，否则递归页面崩溃
 </script>
 
 <template>
-  <slot :page="pagination"></slot>
+  <slot :page="pagination" :current-range="currentRange"></slot>
   <a-pagination
     v-model:current="pagination.current"
     :total="pagination.total"
     :page-size="pagination.pageSize"
-    :showTotal="(total:number, range:number[]) => (pagination.range=range) && `显示${total}条数据中${range[0]}-${range[1]} 条`"
+    :showTotal="(total:number, range:number[]) => (currentRange=range) && `显示${total}条数据中${range[0]}-${range[1]} 条`"
   />
 </template>
 

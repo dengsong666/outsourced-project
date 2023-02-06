@@ -19,7 +19,7 @@ const emit = defineEmits(['row-click'])
     <i :class="`${layout == 'grid' ? 'i-ant-design-bars-outlined' : 'i-ant-design-appstore-outlined'} wh-48px mx8px`" @click="layout = layout == 'grid' ? 'table' : 'grid'"></i>
   </div>
   <Pagination :total="data.length">
-    <template #default="{ page }">
+    <template #default="{ page, currentRange }">
       <!-- table布局 -->
       <a-table v-show="layout == 'table'" :columns="columns" :data-source="data" :pagination="page" :custom-row="(row) => ({ onClick: () => emit('row-click', row) })">
         <template #bodyCell="{ text, column, record }">
@@ -33,7 +33,7 @@ const emit = defineEmits(['row-click'])
       </a-table>
       <!-- grid布局 -->
       <div v-show="layout == 'grid'" class="grid-box bg-#363B640D p24px">
-        <div v-for="item in data.slice(page.range[0], page.range[1] + 1)" @click="emit('row-click')" class="p16px bg-#fff z10 box" :key="item.id">
+        <div v-for="item in data.slice(currentRange[0], currentRange[1] + 1)" @click="emit('row-click')" class="p16px bg-#fff z10 box" :key="item.id">
           <p text-right>
             <Operation :target="item" />
           </p>
