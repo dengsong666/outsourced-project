@@ -20,7 +20,7 @@ const searchText = ref('')
   width: 500px;
   min-width: 300px;
   border-radius: 16px;
-  padding: 16px;
+  padding: 8px 16px;
   background-color: #fff;
   z-index: 10;
   border: none;

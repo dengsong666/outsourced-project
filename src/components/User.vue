@@ -87,4 +87,8 @@ function handleSend() {
   </a-table>
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+:deep(.ant-pagination) {
+  display: none;
+}
+</style>
