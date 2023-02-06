@@ -8,43 +8,14 @@ const selectedKeys = ref(['1'])
 
 <template>
   <a-layout-sider theme="light" class="text-center p16px">
-    <img src="@/assets/title-logo.png" alt="logo" m="x24px y8px" />
+    <img src="@/assets/title-logo.png" alt="logo" m="x48px y8px" />
     <a-menu v-model:selectedKeys="selectedKeys" mode="inline" @click="({ key }) => router.push({ name: key as RouteRecordName })">
       <template v-for="{ name, meta } in [...agentRoutes, ...adminRoutes]">
         <a-menu-item v-if="!meta?.hidden" :key="name">
-          <i :class="`i-ant-design-${meta?.icon} mr8px`" />
-          <span>{{ meta?.title }}</span>
+          <i :class="`i-ant-design-${meta?.icon} mr16px wh-28px`" />
+          <span class="text-18px">{{ meta?.title }}</span>
         </a-menu-item>
       </template>
-
-      <!-- <a-menu-item key="0">
-        <i class="i-ant-design-dashboard-outlined" />
-        <span>仪表盘</span>
-      </a-menu-item>
-      <a-menu-item key="1">
-        <i class="i-ant-design-usergroup-add-outlined" />
-        <span>代理商</span>
-      </a-menu-item>
-      <a-menu-item key="2">
-        <i class="i-ant-design-user-outlined" />
-        <span>用户管理</span>
-      </a-menu-item>
-      <a-menu-item key="3">
-        <i class="i-ant-design-menu-outlined" />
-        <span>菜单管理</span>
-      </a-menu-item>
-      <a-menu-item key="4">
-        <i class="i-ant-design-apartment-outlined />" />
-        <span>角色管理</span>
-      </a-menu-item>
-      <a-menu-item key="5">
-        <i class="i-ant-design-key-outlined />" />
-        <span>第三方令牌</span>
-      </a-menu-item>
-      <a-menu-item key="6">
-        <i class="i-ant-design-notification-outlined />" />
-        <span>通知</span>
-      </a-menu-item> -->
     </a-menu>
     <div mt-auto>
       <div class="flex-col items-stretch rd-24px bg-#e8f0fc p16px w60% mx-auto">
@@ -71,6 +42,23 @@ const selectedKeys = ref(['1'])
   flex-basis: 300px !important;
   min-width: 300px !important;
   width: 300px !important;
+  border-right: 1px solid #eee;
+}
+.ant-menu {
+  border-right: none;
+  padding: 0 24px;
+  :deep(.ant-menu-item) {
+    height: 60px;
+    line-height: 60px;
+  }
+  :deep(.ant-menu-item::after) {
+    border-right: none;
+  }
+  :deep(.ant-menu-item-selected) {
+    border-radius: 20px;
+    background-color: #fff;
+    z-index: 10;
+  }
 }
 :deep(.ant-layout-sider-children) {
   display: flex;

@@ -20,13 +20,14 @@ import Content from './Content.vue'
 <style scoped lang="scss">
 .bg {
   position: fixed;
+  pointer-events: none;
   &1 {
     top: 0;
-    left: 100px;
+    left: 150px;
     width: 400px;
     height: 200px;
     background: #fe9874;
-    filter: blur(200px);
+    filter: blur(300px);
   }
   &2 {
     top: 500px;
@@ -34,7 +35,7 @@ import Content from './Content.vue'
     width: 400px;
     height: 200px;
     background: #fe9874;
-    filter: blur(200px);
+    filter: blur(400px);
   }
   &3 {
     top: 800px;

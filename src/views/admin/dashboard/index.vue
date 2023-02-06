@@ -105,6 +105,6 @@ onMounted(() => nextTick(() => createMap('#map', agentMap)))
   width: unset;
   right: 0;
   margin-right: 0;
-  transform: translateY(-150%);
+  transform: translateY(-125%);
 }
 </style>

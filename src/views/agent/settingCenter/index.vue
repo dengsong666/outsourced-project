@@ -50,7 +50,7 @@ const settings = reactive({
     <a-row :gutter="[16, 16]">
       <a-col :span="18">
         <a-form-item label="描述" name="描述">
-          <a-textarea v-model:value="settings.description" />
+          <a-textarea v-model:value="settings.description" :rows="4" />
         </a-form-item>
       </a-col>
     </a-row>

@@ -7,7 +7,34 @@ export default [
     component: () => import('@/views/admin/dashboard/index.vue'),
     meta: {
       title: '仪表盘',
-      icon: 'usergroup-add-outlined'
+      icon: 'dashboard-outlined'
+    }
+  },
+  {
+    path: '/menu-manage',
+    name: 'MenuManage',
+    component: '',
+    meta: {
+      title: '菜单管理',
+      icon: 'menu-outlined'
+    }
+  },
+  {
+    path: '/role-manage',
+    name: 'RoleManage',
+    component: '',
+    meta: {
+      title: '角色管理',
+      icon: 'apartment-outlined'
+    }
+  },
+  {
+    path: '/third-party-token',
+    name: 'ThirdPartyToken',
+    component: '',
+    meta: {
+      title: '第三方令牌',
+      icon: 'key-outlined'
     }
   },
   {

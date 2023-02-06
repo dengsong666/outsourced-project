@@ -51,7 +51,7 @@ function handleSubmit() {
       <a-range-picker v-model:value="agentForm.date_range" :placeholder="['开始日期', '结束日期']" value-format="YYYY-MM-DD" />
     </a-form-item>
     <a-form-item name="description">
-      <a-textarea v-model:value="agentForm.description" placeholder="描述" />
+      <a-textarea v-model:value="agentForm.description" placeholder="描述" :rows="4" />
     </a-form-item>
     <a-form-item name="state" label="状态" class="state">
       <a-switch v-model:checked="agentForm.state" />

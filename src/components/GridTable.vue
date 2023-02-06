@@ -33,7 +33,7 @@ const emit = defineEmits(['row-click'])
       </a-table>
       <!-- grid布局 -->
       <div v-show="layout == 'grid'" class="grid-box bg-#363B640D p24px">
-        <div v-for="item in data.slice(page.range[0], page.range[1] + 1)" @click="emit('row-click')" class="p16px bg-#fff" :key="item.id">
+        <div v-for="item in data.slice(page.range[0], page.range[1] + 1)" @click="emit('row-click')" class="p16px bg-#fff z10 box" :key="item.id">
           <p text-right>
             <Operation :target="item" />
           </p>
