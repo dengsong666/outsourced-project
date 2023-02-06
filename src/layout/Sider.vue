@@ -12,7 +12,7 @@ const selectedKeys = ref(['1'])
     <a-menu v-model:selectedKeys="selectedKeys" mode="inline" @click="({ key }) => router.push({ name: key as RouteRecordName })">
       <template v-for="{ name, meta } in [...agentRoutes, ...adminRoutes]">
         <a-menu-item v-if="!meta?.hidden" :key="name">
-          <i :class="`i-ant-design-${meta?.icon} mr16px wh-28px`" />
+          <i :class="`i-ant-design-${meta?.icon} mr16px wh-24px inline-block`" />
           <span class="text-18px">{{ meta?.title }}</span>
         </a-menu-item>
       </template>
@@ -47,10 +47,6 @@ const selectedKeys = ref(['1'])
 .ant-menu {
   border-right: none;
   padding: 0 24px;
-  :deep(.ant-menu-item) {
-    height: 50px;
-    line-height: 50px;
-  }
   :deep(.ant-menu-item::after) {
     border-right: none;
   }
