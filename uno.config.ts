@@ -25,6 +25,7 @@ export default defineConfig({
       }
     })
   ],
+  safelist: ['setting', 'dashboard', 'notification', 'menu', 'apartment', 'key', 'usergroup-add'].map((icon) => `i-ant-design-${icon}-outlined`),
   theme: {
     colors: {
       default: '#4700FF',

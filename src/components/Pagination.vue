@@ -7,7 +7,7 @@ const pagination = reactive({
   current: 1,
   total
 })
-const currentRange: number[] = [] // 不要用响应式，否则递归页面崩溃
+let currentRange: number[] = [] // 不要用响应式，否则递归页面崩溃
 </script>
 
 <template>
