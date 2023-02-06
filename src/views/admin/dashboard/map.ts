@@ -39,9 +39,7 @@ const mapOption = (data: Map[]) =>
         color: '#fff'
       },
       itemStyle: {
-        normal: {
-          color: '#f58d51'
-        }
+        color: '#f58d51'
       }
     }
   } as EChartsOption)

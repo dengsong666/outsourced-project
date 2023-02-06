@@ -20,22 +20,16 @@ const year = (name: string, data: number[], lineColor: string, areaColor: string
       cap: 'round'
     },
     areaStyle: {
-      normal: {
-        color: {
-          type: 'linear',
-          x: 0,
-          y: 0,
-          x2: 0,
-          y2: 1,
-          colorStops: [
-            { offset: 0, color: areaColor },
-            { offset: 1, color: '#ffffff' }
-          ]
-        },
-        lineStyle: {
-          width: 20,
-          cap: 'round'
-        }
+      color: {
+        type: 'linear',
+        x: 0,
+        y: 0,
+        x2: 0,
+        y2: 1,
+        colorStops: [
+          { offset: 0, color: areaColor },
+          { offset: 1, color: '#ffffff' }
+        ]
       }
     }
   } as EChartsOption)
@@ -61,7 +55,7 @@ export const histogramOption = (dataY: number[], areaColor: string) =>
         itemStyle: {
           //柱状颜色和圆角
           color: areaColor,
-          barBorderRadius: [6, 6, 0, 0] // （顺时针左上，右上，右下，左下）
+          borderRadius: [6, 6, 0, 0] // （顺时针左上，右上，右下，左下）
         }
       }
     ]
@@ -84,13 +78,11 @@ export const smoothLineOption = (dataY: number[], lineColor: string) =>
         smooth: true,
         showSymbol: false,
         itemStyle: {
-          normal: {
-            color: lineColor,
-            lineStyle: {
-              width: 5,
-              cap: 'round'
-            }
-          }
+          color: lineColor
+        },
+        lineStyle: {
+          width: 5,
+          cap: 'round'
         }
       }
     ]

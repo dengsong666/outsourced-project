@@ -48,8 +48,8 @@ const selectedKeys = ref(['1'])
   border-right: none;
   padding: 0 24px;
   :deep(.ant-menu-item) {
-    height: 60px;
-    line-height: 60px;
+    height: 50px;
+    line-height: 50px;
   }
   :deep(.ant-menu-item::after) {
     border-right: none;
