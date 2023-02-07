@@ -36,6 +36,7 @@ const year = (name: string, data: number[], lineColor: string, areaColor: string
 // 直方图
 export const histogramOption = (dataY: number[], areaColor: string) =>
   ({
+    grid: { top: 6, bottom: 0, left: 0, right: 0, containLabel: true },
     xAxis: {
       type: 'category',
       axisTick: {

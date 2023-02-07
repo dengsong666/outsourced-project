@@ -47,7 +47,7 @@ import UserForm from './UserForm.vue'
       </a-tooltip>
     </div>
     <div class="grid-item3">
-      <User :scroll-y="350">
+      <User :scroll-y="300">
         <template #add>
           <UserForm />
         </template>
@@ -83,6 +83,7 @@ import UserForm from './UserForm.vue'
     }
   }
   .grid-item3 {
+    padding-top: 0;
     grid-area: 2 / 1 / 3 / 4;
   }
   .grid-item4 {

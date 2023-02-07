@@ -3,7 +3,6 @@ import Carousel from './Carousel.vue'
 const {
   params: { id }
 } = useRoute() // id 用来调用接口获取公司数据填充下面
-console.log(id)
 </script>
 
 <template>

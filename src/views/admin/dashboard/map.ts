@@ -7,12 +7,20 @@ interface Map {
 }
 const mapOption = (data: Map[]) =>
   ({
+    title: {
+      text: '代理商地域分布',
+      textStyle: {
+        color: '#000',
+        fontSize: 24,
+        fontWeight: 700
+      }
+    },
     geo: {
       type: 'map',
       map: 'china',
       selectedMode: true,
       layoutCenter: ['50%', '70%'],
-      layoutSize: 700,
+      layoutSize: 750,
       itemStyle: {
         areaColor: '#E9ECF1',
         borderColor: '#ffffff',

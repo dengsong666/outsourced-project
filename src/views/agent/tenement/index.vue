@@ -24,9 +24,12 @@ const columns: TableColumnsType = [
 <template>
   <router-view v-if="$route.params.id" />
   <GridTable v-else :data="data" :columns="columns" @row-click="$router.push(`/tenement/${$event.id}`)">
-    <template #add> sss </template>
-    <template #edit> ss </template>
-    <template #details> sss </template>
+    <template #add>
+      <div class="p24px">暂无</div>
+    </template>
+    <template #edit>
+      <div class="p24px">暂无</div>
+    </template>
   </GridTable>
 </template>
 

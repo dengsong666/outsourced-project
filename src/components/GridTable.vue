@@ -27,7 +27,11 @@ const emit = defineEmits(['row-click'])
             <img class="w40px h40px" :src="text" alt="" srcset="" />
           </template>
           <template v-else-if="column.dataIndex === 'operation'">
-            <Operation :target="record" />
+            <Operation :target="record" @details="emit('row-click', $event)">
+              <template #edit>
+                <slot name="edit"></slot>
+              </template>
+            </Operation>
           </template>
         </template>
       </a-table>
@@ -35,7 +39,11 @@ const emit = defineEmits(['row-click'])
       <div v-show="layout == 'grid'" class="grid-box bg-#363B640D p24px">
         <div v-for="item in data.slice(currentRange[0], currentRange[1] + 1)" @click="emit('row-click')" class="p16px bg-#fff z10 box" :key="item.id">
           <p text-right>
-            <Operation :target="item" />
+            <Operation :target="item" @details="emit('row-click', $event)">
+              <template #edit>
+                <slot name="edit"></slot>
+              </template>
+            </Operation>
           </p>
           <div>
             <h3>{{ item.name }}</h3>

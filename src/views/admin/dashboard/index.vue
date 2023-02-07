@@ -35,8 +35,8 @@ onMounted(() => nextTick(() => createMap('#map', agentMap)))
       </div>
     </div>
     <div class="grid-item2 box h100%">
-      <p class="text-24px font-700 lh-40px">代理商地域分布</p>
-      <div id="map" class="w100% h-[calc(100%-40px)]"></div>
+      <!-- <p class="text-24px font-700 lh-40px">代理商地域分布</p> -->
+      <div id="map" class="wh-100%"></div>
     </div>
     <div class="grid-item3">
       <p class="text-24px font-700 lh-40px">代理商租户Top榜</p>

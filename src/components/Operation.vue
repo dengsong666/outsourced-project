@@ -2,6 +2,7 @@
 defineProps<{
   target: any
 }>()
+const emit = defineEmits(['details'])
 function handleDelete() {}
 </script>
 
@@ -15,12 +16,7 @@ function handleDelete() {}
             <slot name="edit"></slot>
           </template>
         </Modal>
-        <Modal title="详情">
-          <a-button type="primary">详情</a-button>
-          <template #content>
-            <slot name="details"></slot>
-          </template>
-        </Modal>
+        <a-button type="primary" @click="emit('details', target)">详情</a-button>
         <a-popconfirm title="你想删除该行吗？" @confirm="handleDelete">
           <a-button type="primary">删除</a-button>
         </a-popconfirm>
