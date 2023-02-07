@@ -10,7 +10,7 @@
     </template>
     <div class="card-box" v-for="v in 2">
       <div v-for="v in 4" class="box">
-        <img class="rd-t-20px w100% h250px" src="https://img.js.design/assets/img/63a9032652bcbaabe80f12ae.png#6dd5bb8d9dd20a7363c8d2d92b06542f" alt="" srcset="" />
+        <img class="rd-t-20px w100% h200px" src="https://img.js.design/assets/img/63a9032652bcbaabe80f12ae.png#6dd5bb8d9dd20a7363c8d2d92b06542f" alt="" srcset="" />
         <div class="flex-row justify-between m16px">
           <span class="font-700 text-20px">受到广泛和</span>
           <a-button type="primary" :disabled="false">开通</a-button>

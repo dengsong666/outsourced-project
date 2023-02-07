@@ -11,7 +11,7 @@ const {
       <Search />
       <Carousel />
     </div>
-    <div class="flex-basis-400px">
+    <div class="flex-basis-400px ml32px">
       <div class="company-card">
         <p text-right><i class="i-ant-design-ellipsis-outlined"></i></p>
         <p class="text-20px font-700">Nella Vita</p>
