@@ -18,7 +18,11 @@ const columns: TableColumnsType = [
   { title: '公司名称', dataIndex: 'name' },
   { title: '租户数', dataIndex: 'tenement_number' },
   { title: '地址', dataIndex: 'address' },
-  { title: '操作', dataIndex: 'operation', fixed: 'right' }
+  {
+    title: '操作',
+    dataIndex: 'operation',
+    fixed: 'right'
+  }
 ]
 </script>
 

@@ -7,7 +7,7 @@ function handleDelete() {}
 </script>
 
 <template>
-  <a-popover :title="null">
+  <a-popover :title="null" trigger="click">
     <template #content>
       <div class="grid-1-3-16">
         <Modal title="编辑">
@@ -22,7 +22,7 @@ function handleDelete() {}
         </a-popconfirm>
       </div>
     </template>
-    <i class="i-ant-design-ellipsis-outlined"></i>
+    <i class="i-ant-design-ellipsis-outlined" @click.stop></i>
   </a-popover>
 </template>
 

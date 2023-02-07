@@ -16,7 +16,8 @@ export default [
     component: '',
     meta: {
       title: '菜单管理',
-      icon: 'menu-outlined'
+      icon: 'menu-outlined',
+      hidden: true
     }
   },
   {
@@ -25,7 +26,8 @@ export default [
     component: '',
     meta: {
       title: '角色管理',
-      icon: 'apartment-outlined'
+      icon: 'apartment-outlined',
+      hidden: true
     }
   },
   {
@@ -34,7 +36,8 @@ export default [
     component: '',
     meta: {
       title: '第三方令牌',
-      icon: 'key-outlined'
+      icon: 'key-outlined',
+      hidden: true
     }
   },
   {

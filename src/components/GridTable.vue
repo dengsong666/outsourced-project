@@ -1,10 +1,20 @@
 <script setup lang="ts">
 import { TableColumnsType } from 'ant-design-vue'
 const layout = ref<'table' | 'grid'>('table')
-defineProps<{
+const props = defineProps<{
   data: any[]
   columns: TableColumnsType
 }>()
+// 阻止操作列的行点击事件
+const newCol = props.columns.map((item) => {
+  if (item.title == '操作') {
+    item.customCell = (record, rowIndex, column) => ({
+      onClick: (e) => e.stopPropagation()
+    })
+    return item
+  }
+  return item
+})
 const emit = defineEmits(['row-click'])
 </script>
 <template>
@@ -21,7 +31,7 @@ const emit = defineEmits(['row-click'])
   <Pagination :total="data.length">
     <template #default="{ page, currentRange }">
       <!-- table布局 -->
-      <a-table v-show="layout == 'table'" :columns="columns" :data-source="data" :pagination="page" :custom-row="(row) => ({ onClick: () => emit('row-click', row) })">
+      <a-table v-show="layout == 'table'" :columns="newCol" :data-source="data" :pagination="page" :custom-row="(row) => ({ onClick: () => emit('row-click', row) })">
         <template #bodyCell="{ text, column, record }">
           <template v-if="column.dataIndex === 'logo'">
             <img class="w40px h40px" :src="text" alt="" srcset="" />

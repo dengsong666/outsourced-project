@@ -3,14 +3,27 @@ import agentRoutes from '../router/routes/modules/agent'
 import adminRoutes from '../router/routes/modules/admin'
 import router from '@/router'
 import { RouteRecordName } from 'vue-router'
+import { MenuClickEventHandler } from 'ant-design-vue/es/menu/src/interface'
+const myRoute = ref(adminRoutes)
 const selectedKeys = ref(['1'])
+
+const handleClick: MenuClickEventHandler = ({ item, key, keyPath }) => {
+  if (key == 'Agent') {
+    myRoute.value.map((item) => {
+      if (item.meta?.hidden) {
+        item.meta.hidden = false
+      }
+      return item
+    })
+  }
+}
 </script>
 
 <template>
   <a-layout-sider theme="light" class="text-center p16px">
     <img src="@/assets/title-logo.png" alt="logo" m="x48px y8px" />
-    <a-menu v-model:selectedKeys="selectedKeys" mode="inline" @click="({ key }) => router.push({ name: key as RouteRecordName })">
-      <template v-for="{ name, meta } in [...agentRoutes, ...adminRoutes]">
+    <a-menu v-model:selectedKeys="selectedKeys" mode="inline" @click="handleClick">
+      <template v-for="{ name, meta } in [...agentRoutes, ...myRoute]">
         <a-menu-item v-if="!meta?.hidden" :key="name">
           <i :class="`i-ant-design-${meta?.icon} mr16px wh-24px`" />
           <span class="text-18px">{{ meta?.title }}</span>

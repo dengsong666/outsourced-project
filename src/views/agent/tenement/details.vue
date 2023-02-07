@@ -35,8 +35,9 @@ const {
 </template>
 
 <style lang="scss" scoped>
-.ant-input-affix-wrapper {
+:deep(.ant-input-affix-wrapper) {
   width: 600px;
+  transform: translateY(-50%);
 }
 
 .company-card {
