@@ -10,7 +10,7 @@ const dashboard = [
 const tenement_top = [
   { company: '苏州钢铁股份有限公司', number: 324, compare: 51 },
   { company: '上海钢铁股份有限公司', number: 23, compare: -40 },
-  { company: '山东钢铁股份有限公司', number: 56, compare: 23 },
+  { company: '山东钢铁股份有限公司', number: 35, compare: 124 },
   { company: '山东钢铁股份有限公司', number: 56, compare: 23 }
 ]
 const agentMap = provincialCapital.map(({ value }) => ({ name: `${parseInt(`${Math.random() * 200}`)}`, value }))
@@ -52,7 +52,7 @@ onMounted(() => nextTick(() => createMap('#map', agentMap)))
                   <span class="flex-center w50px h50px rd-20px bg-#FE9874 text-24px font-600 c-#fff">{{ index + 1 }}</span>
                 </template>
               </a-list-item-meta>
-              <div class="flex-col">
+              <div class="flex-col flex-basis-50px">
                 <span class="text-18px font-600">{{ item.number }}</span>
                 <span class="relative left--6px" v-html="compareTo(item.compare)" />
               </div>

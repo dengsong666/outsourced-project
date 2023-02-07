@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import { MyChart } from '@/utils'
+import { moneyFormat, MyChart } from '@/utils'
 import { histogramOption, smoothLineOption, lineTrendOption } from './chart'
 import avatar from '@/assets/avatar.png'
 const expire_tenement = [
-  { avatar, company: '苏州钢铁股份有限公司', tenancy_term: '2022-12-14 2023-5-14', surplus_term: 30 },
-  { avatar, company: '上海钢铁股份有限公司', tenancy_term: '2022-12-17 2023-5-17', surplus_term: 60 },
-  { avatar, company: '山东钢铁股份有限公司', tenancy_term: '2022-12-14 2023-5-14', surplus_term: 90 }
+  { avatar, company: '苏州钢铁股份有限公司', tenancy_term: '2022-12-14 2023-5-14', surplus_term: 30, color: '#fe8289' },
+  { avatar, company: '上海钢铁股份有限公司', tenancy_term: '2022-12-17 2023-5-17', surplus_term: 60, color: '#fe9874' },
+  { avatar, company: '山东钢铁股份有限公司', tenancy_term: '2022-12-14 2023-5-14', surplus_term: 90, colr: '#70504b' }
 ]
 const up_down = reactive({
   up: '#4CBC9A',
@@ -35,15 +35,25 @@ onMounted(() => {
   <div class="grid-box">
     <div class="div1 bg-#535478! c-#fff">
       <p>租户</p>
-      <p>余额</p>
-      <span class="text-36px font-600">$234.34</span>
+      <p class="text-18px">余额</p>
+      <span class="text-36px font-600">${{ moneyFormat(354657) }}</span>
+      <div class="border-box left--12px bottom-20px"></div>
+      <div class="border-box left--44px bottom--4px"></div>
+      <div class="flex-row items-center mt-auto">
+        <span class="text-64px">. . . . . . . . . . . </span>
+        <div class="relative flex-col text-24px top-28px left-16px">
+          <span class="text-16px">有效日期</span>
+          <span class="font-700 lh-16px">2022</span>
+          <span class="font-700 relative left-24px top--12px">03/21</span>
+        </div>
+      </div>
     </div>
     <div class="div2">
       <div class="flex-row">
         <div>
           <p>活跃</p>
           <p class="flex-row">
-            <span class="text-36px font-600 mr16px">$234.34</span>
+            <span class="text-36px font-600 mr16px">${{ moneyFormat(2348) }}</span>
             <span class="flex-col justify-center" :style="`color:${up_down.up}`">
               <i class="i-ant-design-caret-up-outlined"></i>
               <span nowrap>+ 15%</span>
@@ -59,7 +69,7 @@ onMounted(() => {
         <div>
           <p>访问量</p>
           <p class="flex-row">
-            <span class="text-36px font-600 mr16px">$54.34</span>
+            <span class="text-36px font-600 mr16px">${{ moneyFormat(5434) }}</span>
             <span class="flex-col justify-center" :style="`color:${up_down.down}`">
               <i class="i-ant-design-caret-down-outlined"></i>
               <span nowrap>- 20%</span>
@@ -71,24 +81,23 @@ onMounted(() => {
       <div id="pv-histogram" class="w100% h-[calc(100%-150px)]"></div>
     </div>
     <div class="div4">
-      <p mb0>租户活跃趋势</p>
-      <div id="trend-line" class="h-[calc(100%-40px)] w100%"></div>
+      <div id="trend-line" class="wh-100%"></div>
     </div>
     <div class="div5">
       <p>最近租户到期</p>
       <a-list item-layout="horizontal" :data-source="expire_tenement" class="h-[calc(100%-40px)] overflow-y-scroll">
-        <template #renderItem="{ item }">
+        <template #renderItem="{ item: { tenancy_term, company, avatar, surplus_term, color } }">
           <a-list-item>
             <a-skeleton avatar :title="false" :loading="false" active>
-              <a-list-item-meta :description="item.tenancy_term">
+              <a-list-item-meta :description="tenancy_term">
                 <template #title>
-                  <span>{{ item.company }}</span>
+                  <span>{{ company }}</span>
                 </template>
                 <template #avatar>
-                  <a-avatar :src="item.avatar" />
+                  <a-avatar :src="avatar" />
                 </template>
               </a-list-item-meta>
-              <div>{{ item.surplus_term }}天</div>
+              <div :style="{ color }" font-700>{{ surplus_term }}天</div>
             </a-skeleton>
           </a-list-item>
         </template>
@@ -119,7 +128,19 @@ onMounted(() => {
 }
 
 .div1 {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
   grid-area: 1 / 1 / 2 / 2;
+  .border-box {
+    position: absolute;
+    width: 160px;
+    height: 160px;
+    border-radius: 20px;
+    border: 2px solid #acacbd;
+    // z-index: -1;
+  }
 }
 .div2 {
   grid-area: 1 / 2 / 2 / 3;

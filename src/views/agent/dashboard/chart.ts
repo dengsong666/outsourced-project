@@ -90,11 +90,30 @@ export const smoothLineOption = (dataY: number[], lineColor: string) =>
 
 export const lineTrendOption = (dataY: [number[], number[]], dataX: any[]) =>
   ({
+    title: {
+      text: '租户的活跃趋势',
+      textStyle: {
+        color: '#000',
+        fontSize: 24,
+        fontWeight: 700
+      }
+    },
     legend: {
       icon: 'circle',
-      right: 150,
+      right: 50,
       itemStyle: { color: '#ffffff', borderWidth: 4 },
       itemGap: 50,
+      formatter: (name) => [`{l| ${name}}`, `{V| ${name == '今年' ? dataY[0].reduce((sum, v) => sum + v) : dataY[1].reduce((sum, v) => sum + v)}}`].join('\n'),
+      textStyle: {
+        rich: {
+          l: {
+            padding: [24, 0, 8]
+          },
+          V: {
+            fontWeight: 600
+          }
+        }
+      },
       data: [
         { name: '今年', itemStyle: { borderColor: '#FE9874' } },
         { name: '去年', itemStyle: { borderColor: '#70504B' } }

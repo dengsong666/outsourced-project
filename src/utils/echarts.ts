@@ -10,5 +10,5 @@ use([TitleComponent, TooltipComponent, GridComponent, DatasetComponent, LegendCo
 export function create(selector: string, option: EChartsOption) {
   const dom = document.querySelector(selector) as HTMLElement
   getInstanceByDom(dom) && dispose(dom)
-  dom && init(dom).setOption({ ...option, grid: { top: 2, right: 2, bottom: 2, left: 2, containLabel: true } })
+  dom && init(dom).setOption({ ...option, grid: { top: 48, right: 16, bottom: 0, left: 0, containLabel: true } })
 }
