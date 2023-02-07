@@ -81,7 +81,11 @@ function handleSend() {
             </div>
           </template>
         </Modal>
-        <Operation :target="record" />
+        <Operation :target="record">
+          <template #edit>
+            <div class="p24px">暂无</div>
+          </template>
+        </Operation>
       </template>
     </template>
   </a-table>
