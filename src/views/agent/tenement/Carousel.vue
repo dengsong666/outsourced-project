@@ -35,7 +35,11 @@
           <Modal title="创建用户" width="50%">
             <i class="i-ant-design-user-outlined" />
             <template #content>
-              <User />
+              <User>
+                <template #add>
+                  <div class="p24px">暂无</div>
+                </template>
+              </User>
             </template>
           </Modal>
         </div>
