@@ -2,7 +2,7 @@
 
 <template>
   <a-layout>
-    <a-layout-content class="flex-col p24px bg-#fff">
+    <a-layout-content class="flex-col py24px px48px bg-#fff">
       <slot></slot>
     </a-layout-content>
   </a-layout>
