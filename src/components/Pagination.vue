@@ -7,16 +7,15 @@ const pagination = reactive({
   current: 1,
   total
 })
-let currentRange: number[] = [] // 不要用响应式，否则递归页面崩溃
 </script>
 
 <template>
-  <slot :page="pagination" :current-range="currentRange"></slot>
+  <slot :page="pagination"></slot>
   <a-pagination
     v-model:current="pagination.current"
     :total="pagination.total"
     :page-size="pagination.pageSize"
-    :showTotal="(total:number, range:number[]) => (currentRange=range) && `显示${total}条数据中${range[0]}-${range[1]} 条`"
+    :showTotal="(total:number, range:number[]) =>`显示${total}条数据中${range[0]}-${range[1]} 条`"
   />
 </template>
 
