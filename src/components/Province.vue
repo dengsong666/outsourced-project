@@ -1,17 +1,17 @@
 <script setup lang="ts">
+import { provinces } from '@/utils'
 const props = defineProps<{
   province: string
   city: string
   area: string
 }>()
-const provinces: any = {
-  北京: { 北京: ['海淀'] },
-  浙江: { 杭州: ['fsf', 'sggf'], 宁波: [], 梧州: [] },
-  江苏: { 南京: [], 苏州: ['sdfds'], 镇江: [] }
-}
 const cities = computed(() => Object.keys(provinces[props.province] ?? {}))
 const areas = computed(() => provinces?.[props.province]?.[props.city])
 const emit = defineEmits(['update:province', 'update:city', 'update:area'])
+
+// 清空后两个选项
+watch(cities, (val, oldVal) => val?.toString() != oldVal?.toString() && (emit('update:city', ''), emit('update:area', '')))
+watch(areas, (val, oldVal) => val?.toString() != oldVal?.toString() && emit('update:area', ''))
 </script>
 
 <template>
