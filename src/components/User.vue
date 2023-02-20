@@ -17,10 +17,10 @@ const data = Array(20)
   .map((item, id) => ({
     id,
     avatar,
-    name: 'John Brown' + id,
-    email: 'asfsf@qq.com',
-    phone: 124366756,
-    state: !!(id % 2),
+    name: 'Chint' + id,
+    email: 'luckjinshun@qq.com',
+    phone: 13866668888,
+    state: !!(id % 3),
     lately_visit_time: '2022-12-11 05:33:12'
   }))
 
@@ -47,14 +47,8 @@ function handleSend() {
       </template>
     </Modal>
   </div>
-  <a-table
-    :columns="columns"
-    :data-source="data"
-    :custom-row="(row) => ({ onClick: () => emit('row-click', row) })"
-    :pagination="{ pageSize: Infinity }"
-    :sticky="true"
-    :scroll="{ y: scrollY || 650 }"
-  >
+  <a-table :columns="columns" :data-source="data" :custom-row="(row) => ({ onClick: () => emit('row-click', row) })"
+    :pagination="{ pageSize: Infinity }" :sticky="true" :scroll="{ y: scrollY || 650 }">
     <template #bodyCell="{ text, column, record }">
       <template v-if="column.dataIndex === 'name'">
         <div class="flex-row">
@@ -62,6 +56,8 @@ function handleSend() {
           <div class="flex-col mx8px">
             <span class="nowrap font-600">{{ record.name }}</span>
             <span class="text-12px c-#A098AE">{{ record.email }}</span>
+
+
           </div>
         </div>
       </template>
@@ -76,8 +72,10 @@ function handleSend() {
           <i class="i-custom-send"></i>
           <template #content>
             <div p="x48px y24px">
-              <span class="bg-#4cbc9a inline-block rd-8px p8px"><i class="i-ant-design-phone-outlined c-#fff"></i></span>
-              <span class="font-600 ml24px">新密码已经发送至手机！</span>
+              <span class="bg-#4cbc9a inline-block rd-8px p8px">
+                <i class="i-ant-design-phone-outlined c-#fff"></i>
+              </span>
+              <span class="font-600 ml26px">新密码已经发送至手机！！！</span>
             </div>
           </template>
         </Modal>
@@ -92,6 +90,9 @@ function handleSend() {
 </template>
 
 <style lang="scss" scoped>
+.i-custom-send{
+  margin-right: 30px;
+}
 :deep(.ant-pagination) {
   display: none;
 }

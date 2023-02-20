@@ -13,15 +13,16 @@
         <div v-for="v in 4" class="box">
           <img class="rd-t-20px w100%" src="https://img.js.design/assets/img/63a9032652bcbaabe80f12ae.png#6dd5bb8d9dd20a7363c8d2d92b06542f" alt="" srcset="" />
           <div class="flex-row justify-between m16px">
-            <span class="font-700 text-20px">受到广泛和</span>
+            <span class="font-700 text-20px">智慧电力运维平台</span>
             <a-button type="primary" :disabled="false">开通</a-button>
           </div>
           <div class="mx16px">
             <Modal title="开通模块">
               <i class="i-ant-design-appstore-outlined" />
               <template #content>
+                <div></div>
                 <div class="overflow-y-scroll px24px py8px">
-                  <div v-for="v in 20" class="flex-row justify-between my8px">
+                  <div v-for="v in 8" class="flex-row justify-between my8px">
                     <span>资产管理</span>
                     <a-button type="primary" :disabled="false" class="btn">
                       <template #icon>

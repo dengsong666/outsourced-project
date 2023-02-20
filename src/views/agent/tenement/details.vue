@@ -14,12 +14,12 @@ const {
     <div class="flex-basis-400px ml32px">
       <div class="company-card">
         <p text-right><i class="i-ant-design-ellipsis-outlined"></i></p>
-        <p class="text-20px font-700">Nella Vita</p>
-        <span class="text-20px font-700">稍等发给我去额撒地你</span>
-        <div class="flex-row justify-between my24px">
+        <p class="text-20px font-800">Nella Vita</p>
+        <span class="text-20px font-800">浙江XXXX钢铁股份有限公司</span>
+        <div class="flex-row justify-between my24px openProduct">
           <div>
             <p>开通产品</p>
-            <span>3</span>
+            <span>1</span>
           </div>
           <div>
             <p>到期日</p>
@@ -47,5 +47,8 @@ const {
   border-radius: 20px;
   background: linear-gradient(180deg, rgba(54, 59, 100, 1) 0%, rgba(76, 188, 154, 1) 100%);
   box-shadow: 0px 20px 50px 0px rgba(191, 21, 108, 0.05);
+  .openProduct{
+    // font-size: larger;
+  }
 }
 </style>

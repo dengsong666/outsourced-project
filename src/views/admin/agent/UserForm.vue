@@ -25,7 +25,7 @@ function handleSubmit() {
       <a-input v-model:value="userForm.name" placeholder="姓名" />
     </a-form-item>
     <a-form-item name="password">
-      <a-input v-model:value="userForm.password" placeholder="密码" />
+      <a-input v-model:value="userForm.password" type="password" placeholder="密码" />
     </a-form-item>
     <a-form-item name="phone">
       <a-input v-model:value="userForm.phone" placeholder="电话" />
@@ -36,8 +36,11 @@ function handleSubmit() {
     <a-form-item name="role">
       <a-select v-model:value="userForm.role" placeholder="角色">
         <a-select-option value="agent">代理商</a-select-option>
-        <a-select-option value="role2">角色2</a-select-option>
-        <a-select-option value="role3">角色3</a-select-option>
+        <a-select-option value="role2">系统租户</a-select-option>
+        <a-select-option value="role3">系统管理员</a-select-option>
+        <a-select-option value="role4">角色4</a-select-option>
+        <a-select-option value="role5">角色5</a-select-option>
+        <a-select-option value="role6">角色6</a-select-option>
       </a-select>
     </a-form-item>
     <a-form-item :wrapper-col="{ offset: 20, span: 16 }" class="mb0!">

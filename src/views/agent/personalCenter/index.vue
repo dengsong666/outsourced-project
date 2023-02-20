@@ -3,8 +3,8 @@ import Info from './Info.vue'
 const infoForm = reactive({
   name: '张三',
   company: '正泰电力服务有限公司',
-  phone: '13612341234',
-  email: 'zhangsan@163.com'
+  phone: '13888886666',
+  email: 'zhangsan@chint.com'
 })
 const passwordForm = reactive({
   oldPassword: '',
@@ -45,14 +45,14 @@ const passwordForm = reactive({
         <span>重置密码</span>
       </p>
       <a-form :model="passwordForm" name="password" :label-col="{ span: 4, push: 1 }" label-align="left" :colon="false">
-        <a-form-item label="旧密码" name="oldPassword">
-          <a-input v-model:value="passwordForm.oldPassword" placeholder="请输入旧密码" />
+        <a-form-item label="旧密码"  name="oldPassword">
+          <a-input v-model:value="passwordForm.oldPassword" placeholder="请输入旧密码" type="password"/>
         </a-form-item>
         <a-form-item label="新密码" name="newPassword">
-          <a-input v-model:value="passwordForm.newPassword" placeholder="请输入新密码" />
+          <a-input v-model:value="passwordForm.newPassword" placeholder="请输入新密码" type="password" />
         </a-form-item>
         <a-form-item label="确认密码" name="_newPassword">
-          <a-input v-model:value="passwordForm._newPassword" placeholder="请再次输入新密码" />
+          <a-input v-model:value="passwordForm._newPassword" placeholder="请再次输入新密码" type="password" />
         </a-form-item>
         <a-form-item :wrapper-col="{ offset: 4, span: 20 }" class="flex-row justify-evenly">
           <a-button type="primary" class="btn-cancel">取消</a-button>

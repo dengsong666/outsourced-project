@@ -16,7 +16,7 @@ export default defineConfig({
     }),
     Components({
       resolvers: [AntDesignVueResolver()],
-      dts: 'types/components.d.ts'
+      dts: 'types/components.d.ts',
     }),
     Unocss({
       configFile: './uno.config.ts'

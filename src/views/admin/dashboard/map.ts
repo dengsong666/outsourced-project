@@ -28,7 +28,9 @@ const mapOption = (data: Map[]) =>
       },
       regions: [
         { name: '广东省', selected: true, select: { itemStyle: { areaColor: '#b2c8f4' } } },
-        { name: '浙江省', selected: true, select: { itemStyle: { areaColor: '#b2c8f4' } } }
+        { name: '浙江省', selected: true, select: { itemStyle: { areaColor: '#b2c8f4' } } },
+        { name: '甘肃省', selected: true, select: { itemStyle: { areaColor: '#b2c8f4' } } },
+        { name: '北京市', selected: true, select: { itemStyle: { areaColor: '#b2c8f4' } } },
       ]
     },
     series: {

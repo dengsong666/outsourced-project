@@ -63,7 +63,7 @@ const emit = defineEmits(['row-click'])
             <img :src="item.logo" alt="logo" srcset="" w120px />
             <div class="mr24px">
               <h4>用户数</h4>
-              <p>{{ item.user_number }}</p>
+              <p>{{ item.user_number}}</p>
             </div>
           </div>
         </div>

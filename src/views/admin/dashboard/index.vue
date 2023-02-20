@@ -11,7 +11,12 @@ const tenement_top = [
   { company: '苏州钢铁股份有限公司', number: 324, compare: 51 },
   { company: '上海钢铁股份有限公司', number: 23, compare: -40 },
   { company: '山东钢铁股份有限公司', number: 35, compare: 124 },
-  { company: '山东钢铁股份有限公司', number: 56, compare: 23 }
+  { company: '上海钢铁股份有限公司', number: 23, compare: -40 },
+  { company: '山东钢铁股份有限公司', number: 35, compare: 124 },
+  { company: '上海钢铁股份有限公司', number: 23, compare: -40 },
+  { company: '山东钢铁股份有限公司', number: 35, compare: 124 },
+  { company: '山东钢铁股份有限公司', number: 56, compare: 23 },
+  { company: '上海市宝山区宝钢公司', number: 66, compare: 88 }
 ]
 const agentMap = provincialCapital.map(({ value }) => ({ name: `${parseInt(`${Math.random() * 200}`)}`, value }))
 const compareTo = (c: number) => `<span class="${c > 0 ? 'c-#4CBC9A' : 'c-#FE8289'}">${c > 0 ? `+${c}` : c}%</span>`
@@ -27,8 +32,7 @@ onMounted(() => nextTick(() => createMap('#map', agentMap)))
         <div class="flex-col">
           <span class="text-18px c-#a098ae">{{ name }}</span>
           <span class="text-36px font-700 c-#363b64">{{ number }}</span>
-          <span class="text-12px c-#a098ae"
-            >较上年
+          <span class="text-12px c-#a098ae">较上年
             <span v-html="compareTo(compare)" />
           </span>
         </div>
@@ -49,7 +53,8 @@ onMounted(() => nextTick(() => createMap('#map', agentMap)))
                   <span>{{ item.company }}</span>
                 </template>
                 <template #avatar>
-                  <span class="flex-center w50px h50px rd-20px bg-#FE9874 text-24px font-600 c-#fff">{{ index + 1 }}</span>
+                  <span class="flex-center w50px h50px rd-20px bg-#FE9874 text-24px font-600 c-#fff">{{ index + 1
+                  }}</span>
                 </template>
               </a-list-item-meta>
               <div class="flex-col flex-basis-50px">
@@ -71,10 +76,12 @@ onMounted(() => nextTick(() => createMap('#map', agentMap)))
   grid-template-rows: repeat(4, 1fr);
   gap: 48px;
   height: 100%;
+
   .grid-item1 {
     grid-area: 1 / 1 / 2 / 4;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
+
     .icon {
       display: table;
       place-items: center;
@@ -85,21 +92,26 @@ onMounted(() => nextTick(() => createMap('#map', agentMap)))
       margin: 16px;
     }
   }
+
   .grid-item2 {
     grid-area: 2 / 1 / 5 / 4;
   }
+
   .grid-item3 {
     grid-area: 1 / 4 / 5 / 5;
   }
 }
+
 .ant-list-item-meta {
   align-items: stretch;
+
   :deep(.ant-list-item-meta-title) {
     display: flex;
     align-items: center;
     height: 100%;
   }
 }
+
 .search-box {
   position: absolute;
   width: unset;

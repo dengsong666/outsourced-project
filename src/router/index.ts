@@ -6,6 +6,7 @@ const router = createRouter({
   routes: [...basicRoutes, ...modulesRoutes],
   history: createWebHistory()
 })
+
 export function setupRouter(app: App) {
   setupRouterGuard(router)
   app.use(router)

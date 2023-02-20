@@ -45,8 +45,8 @@ const handleClick: MenuClickEventHandler = ({ item, key, keyPath }) => {
         <i i-ant-design-logout-outlined mr8px />
         Logout
       </p>
-      <p text-left text-12px>运营管理平台</p>
-      <p text-left text-12px>泰无忧</p>
+      <p text-left text-14px>运营管理平台</p>
+      <p text-left text-14px>泰无忧</p>
     </div>
   </a-layout-sider>
 </template>

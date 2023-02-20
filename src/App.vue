@@ -12,6 +12,7 @@ import 'ant-design-vue/es/notification/style/index.css'
 #app {
   height: 100%;
   overflow: hidden;
+  // 666  
   // background-image: url('@/assets/bg.jpg');
   // background-size: 100%;
 }

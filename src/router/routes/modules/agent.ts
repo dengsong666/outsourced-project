@@ -27,7 +27,7 @@ export default [
     component: () => import('@/views/agent/dashboard/index.vue'),
     meta: {
       title: '仪表盘',
-      icon: 'dashboard-outlined'
+      icon: 'dashboard-outlined',
     }
   },
   {

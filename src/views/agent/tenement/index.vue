@@ -7,9 +7,9 @@ const data = Array(20)
   .map((item, id) => ({
     id,
     logo,
-    name: 'John Brown' + id,
-    user_number: id,
-    address: 'New York No. 1 Lake Park'
+    name: 'Chint' + (id + 100),
+    user_number: id + 100,
+    address: '上海市松江区思贤路3655号'
   }))
 
 const columns: TableColumnsType = [
