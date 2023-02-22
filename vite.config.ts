@@ -16,7 +16,7 @@ export default defineConfig({
     }),
     Components({
       resolvers: [AntDesignVueResolver()],
-      dts: 'types/components.d.ts',
+      dts: 'types/components.d.ts'
     }),
     Unocss({
       configFile: './uno.config.ts'
@@ -38,7 +38,7 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: `http://localhost:8888`, // 代理到 目标路径
+        target: `http://api.taiwuyou.cn:9007/api/1.0/TwyAgent`, // 代理到 目标路径
         changeOrigin: true,
         rewrite: (path) => path.replace('/api', '')
       }
