@@ -1,8 +1,9 @@
 <script setup lang="ts">
+import type { CustomTable } from '@/store'
 import { TableColumnsType } from 'ant-design-vue'
 const layout = ref<'table' | 'grid'>('table')
 const props = defineProps<{
-  data: any[]
+  table: CustomTable
   columns: TableColumnsType
 }>()
 // 阻止操作列的行点击事件
@@ -15,7 +16,7 @@ const newCol = props.columns.map((item) => {
   }
   return item
 })
-const emit = defineEmits(['row-click'])
+const emit = defineEmits(['row-click', 'delete', 'edit'])
 </script>
 <template>
   <div class="flex-row items-center mb24px">
@@ -28,48 +29,51 @@ const emit = defineEmits(['row-click'])
     </Modal>
     <i :class="`${layout == 'grid' ? 'i-ant-design-bars-outlined' : 'i-ant-design-appstore-outlined'} wh-48px mx8px`" @click="layout = layout == 'grid' ? 'table' : 'grid'"></i>
   </div>
-  <Pagination :total="data.length">
-    <template #default="{ page }">
-      <!-- table布局 -->
-      <a-table v-show="layout == 'table'" :columns="newCol" :data-source="data" :pagination="page" :custom-row="(row) => ({ onClick: () => emit('row-click', row) })">
-        <template #bodyCell="{ text, column, record }">
-          <template v-if="column.dataIndex === 'logo'">
-            <img class="w40px h40px" :src="text" alt="" srcset="" />
+  <!-- table布局 -->
+  <a-table
+    v-show="layout == 'table'"
+    :columns="newCol"
+    :data-source="table.list"
+    :pagination="{ pageSize: table.page_size, current: table.current }"
+    :custom-row="(row) => ({ onClick: () => emit('row-click', row.id) })"
+  >
+    <template #bodyCell="{ text, column, record }">
+      <template v-if="column.dataIndex === 'logo'">
+        <img class="w40px h40px" :src="text" alt="" srcset="" />
+      </template>
+      <template v-else-if="column.dataIndex === 'operation'">
+        <Operation :table="table" :target="record">
+          <template #edit>
+            <slot name="edit" :form="record"></slot>
           </template>
-          <template v-else-if="column.dataIndex === 'operation'">
-            <Operation :target="record" @details="emit('row-click', $event)">
-              <template #edit>
-                <slot name="edit"></slot>
-              </template>
-            </Operation>
+        </Operation>
+      </template>
+    </template>
+  </a-table>
+  <!-- grid布局 -->
+  <div v-show="layout == 'grid'" class="grid-box bg-#363B640D p24px">
+    <div v-for="item in table.list" @click="emit('row-click', item.id)" class="p16px bg-#fff z10 box" :key="item.id">
+      <p text-right>
+        <Operation :table="table" :target="item">
+          <template #edit>
+            <slot name="edit" :form="item"></slot>
           </template>
-        </template>
-      </a-table>
-      <!-- grid布局 -->
-      <div v-show="layout == 'grid'" class="grid-box bg-#363B640D p24px">
-        <div v-for="item in data.slice(page.pageSize * (page.current - 1), page.pageSize * page.current)" @click="emit('row-click')" class="p16px bg-#fff z10 box" :key="item.id">
-          <p text-right>
-            <Operation :target="item" @details="emit('row-click', $event)">
-              <template #edit>
-                <slot name="edit"></slot>
-              </template>
-            </Operation>
-          </p>
-          <div>
-            <h3>{{ item.name }}</h3>
-            <span class="c-#A098AE text-14px">{{ item.address }}</span>
-          </div>
-          <div class="flex-row justify-between my48px">
-            <img :src="item.logo" alt="logo" srcset="" w120px />
-            <div class="mr24px">
-              <h4>用户数</h4>
-              <p>{{ item.user_number}}</p>
-            </div>
-          </div>
+        </Operation>
+      </p>
+      <div>
+        <h3>{{ item.name }}</h3>
+        <span class="c-#A098AE text-14px">{{ item.address }}</span>
+      </div>
+      <div class="flex-row justify-between my48px">
+        <img :src="item.logo" alt="logo" srcset="" w120px />
+        <div class="mr24px">
+          <h4>用户数</h4>
+          <p>{{ item.user_number }}</p>
         </div>
       </div>
-    </template>
-  </Pagination>
+    </div>
+  </div>
+  <Pagination :table="table" />
 </template>
 <style scoped lang="scss">
 .grid-box {

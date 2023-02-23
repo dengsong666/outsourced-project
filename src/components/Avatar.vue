@@ -2,11 +2,13 @@
 import { message, UploadFile } from 'ant-design-vue'
 // import logo from '@/assets/logo.png'
 import type { UploadChangeParam } from 'ant-design-vue'
-const fileList = ref([])
+import { getLocalStorage } from '@/utils'
+const uploadFile = ref<UploadFile>()
 const loading = ref(false)
 const imageUrl = ref()
 
 const handleChange = (info: UploadChangeParam) => {
+  console.log(info)
   if (info.file.status === 'uploading') {
     loading.value = true
     return
@@ -24,6 +26,7 @@ const handleChange = (info: UploadChangeParam) => {
 }
 
 const beforeUpload = (file: UploadFile) => {
+  uploadFile.value = file
   const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png'
   if (!isJpgOrPng) {
     message.error('You can only upload JPG file!')
@@ -42,23 +45,25 @@ function getBase64(img: Blob, callback: (base64Url: string) => void) {
 </script>
 <template>
   <div class="flex-col items-center">
-    <div class="flex-center h100px w100px bg-#DBDBDB rd-20px">
-      <img class="w100%" v-if="imageUrl" :src="imageUrl" alt="avatar" />
-      <div v-else>
-        <i v-if="loading" class="i-ant-design-loading-outlined"></i>
-        <i v-else class="i-ant-design-plus-outlined"></i>
-      </div>
-    </div>
     <a-upload
-      v-model:file-list="fileList"
-      name="avatar"
+      name="file"
       :show-upload-list="false"
-      action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+      :headers="{
+        Authorization: `Bearer ${getLocalStorage('token').accessToken}`
+      }"
+      :action="`/upload/${uploadFile?.type}`"
       :before-upload="beforeUpload"
       @change="handleChange"
     >
-      <a-button class="bg-#363B64 c-#fff rd-8px mt16px"> 上传logo </a-button>
+      <div class="flex-center h100px w100px bg-#DBDBDB rd-20px">
+        <img class="w100%" v-if="imageUrl" :src="imageUrl" alt="avatar" />
+        <div v-else>
+          <i v-if="loading" class="i-ant-design-loading-outlined"></i>
+          <i v-else class="i-ant-design-plus-outlined"></i>
+        </div>
+      </div>
     </a-upload>
+    <a-button class="bg-#363B64 c-#fff rd-8px mt16px"> 上传logo </a-button>
   </div>
 </template>
 <style></style>

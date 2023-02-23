@@ -1,11 +1,15 @@
 <script setup lang="ts">
+import { useCommon } from '@/store'
+
 const { duration } = defineProps<{
   title: string
   width?: number | string
   duration?: number
 }>()
 const visible = ref(false)
+const { bus } = useCommon()
 watchEffect(() => visible.value && duration && setTimeout(() => (visible.value = false), duration * 1000))
+bus.on('close', () => (visible.value = false))
 </script>
 
 <template>

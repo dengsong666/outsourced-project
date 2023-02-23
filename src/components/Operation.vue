@@ -1,9 +1,11 @@
 <script setup lang="ts">
+import { CustomTable } from '@/store'
+
 defineProps<{
+  table: CustomTable
   target: any
 }>()
 const emit = defineEmits(['details'])
-function handleDelete() {}
 </script>
 
 <template>
@@ -16,12 +18,10 @@ function handleDelete() {}
             <slot name="edit"></slot>
           </template>
         </Modal>
-        <a-button type="primary" @click="emit('details', target)">详情</a-button>
-        <a-popconfirm title="你想删除该行吗？" @confirm="handleDelete">
+        <a-button type="primary" @click="table.viewRow(target.id)">详情</a-button>
+        <a-popconfirm title="你想删除该行吗？" @confirm="table.deleteRow(target.id)">
           <a-button type="primary">删除</a-button>
         </a-popconfirm>
-
-
       </div>
     </template>
     <i class="i-ant-design-ellipsis-outlined" @click.stop></i>

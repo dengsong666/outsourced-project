@@ -37,6 +37,8 @@ service.interceptors.response.use(
     const {
       data: { code, msg }
     } = response
+    console.log(response.data)
+
     // 根据自定义错误码判断请求是否成功
     if (code === 0) {
       message.success(msg)

@@ -9,3 +9,11 @@ export function login(data: { account?: string; password?: string }) {
     data
   })
 }
+// 上传
+export function upload(file_type: string, file: File) {
+  return http('POST', {
+    headers: { 'Content-Type': '"multipart/form-data' },
+    url: `/upload/${file_type}`,
+    data: file
+  })
+}

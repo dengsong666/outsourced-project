@@ -1,5 +1,9 @@
 <script setup lang="ts">
+import { getAgent } from '@/api'
+import { dateFormat } from '@/utils'
 import UserForm from './UserForm.vue'
+const { data } = await getAgent({ id: useRoute().params.id as string })
+console.log(data)
 </script>
 
 <template>
@@ -11,13 +15,13 @@ import UserForm from './UserForm.vue'
       </div>
       <div class="flex-row">
         <div class="flex-1">
-          <p class="text-32px font-700 mb8px">正泰电力服务有限公司</p>
-          <p class="font-600">2022.01.01~2023.12.31</p>
-          <p class="c-#A098AEFF"><i class="i-ant-design-environment-outlined"></i> 上海市,松江区</p>
+          <p class="text-32px font-700 mb8px">{{ data.name }}</p>
+          <p class="font-600">{{ `${dateFormat(data.start_time)} ~ ${dateFormat(data.end_time)}` }}</p>
+          <p class="c-#A098AEFF"><i class="i-ant-design-environment-outlined"></i> {{ data.address }}</p>
         </div>
         <div class="flex-1 grid-2-2-16 items-center">
           <span>租户</span>
-          <span>张三</span>
+          <span>{{ data.contacts }}</span>
           <span class="font-600">
             <span class="bg-#FE9874 inline-block rd-8px p4px"><i class="i-ant-design-user-outlined c-#fff" /></span>
             <span class="mx16px">150</span>
@@ -25,7 +29,7 @@ import UserForm from './UserForm.vue'
           </span>
           <span class="font-600">
             <span class="bg-#FE9874 inline-block rd-8px p4px"><i class="i-ant-design-phone-outlined c-#fff" /></span>
-            <span class="mx16px">15345476780</span>
+            <span class="mx16px">{{ data.telephone }}</span>
           </span>
         </div>
       </div>
@@ -39,10 +43,9 @@ import UserForm from './UserForm.vue'
       </ul>
       <a-tooltip class="desc" color="cyan" placement="left">
         <template #title>
-          正泰电力服务有限公司是正泰集团旗下正泰电气股份有限公司全资控股设立的首家配售电一体化公司，依托正泰集团输配电产业资源和增量配电网，以配售电业务形态为基础，围绕客户的供用电服务，为客户提供完备的供配电设备、电力工程安装检修、节能和能效管理、多能互补。
-          正泰电力服务有限公司是正泰集团旗下正泰电气股份有限公司全资控股设立的首家配售电一体化公司，依托正泰集团输配电产业资源和增量配电网，以配售电业务形态为基础，围绕客户的供用电服务，为客户提供完备的供配电设备、电力工程安装检修、节能和能效管理、多能互补。
+          {{ data.describe }}
         </template>
-        正泰电力服务有限公司是正泰集团旗下正泰电气股份有限公司全资控股设立的首家配售电一体化公司，依托正泰集团输配电产业资源和增量配电网，以配售电业务形态为基础，围绕客户的供用电服务，为客户提供完备的供配电设备、电力工程安装检修、节能和能效管理、多能互补。
+        {{ data.describe }}
       </a-tooltip>
     </div>
     <div class="grid-item3">

@@ -1,20 +1,16 @@
 <script setup lang="ts">
-const { total } = defineProps<{
-  total: number
+import type { CustomTable } from '@/store'
+defineProps<{
+  table: CustomTable
 }>()
-const pagination = reactive({
-  pageSize: 8,
-  current: 1,
-  total
-})
 </script>
 
 <template>
-  <slot :page="pagination"></slot>
   <a-pagination
-    v-model:current="pagination.current"
-    :total="pagination.total"
-    :page-size="pagination.pageSize"
+    v-model:current="table.current"
+    v-model:page-size="table.page_size"
+    :total="table.total"
+    @change="table.getList()"
     :showTotal="(total:number, range:number[]) =>`显示${total}条数据中${range[0]}-${range[1]} 条`"
   />
 </template>

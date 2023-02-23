@@ -1,3 +1,4 @@
+import dayjs from 'dayjs'
 // 判断对象类型
 export const Type = {
   value: (obj: any) => Object.prototype.toString.call(obj).replace(/^\[object (\S+)\]$/, '$1'),
@@ -16,6 +17,20 @@ export const Type = {
   isHTMLDocument: (obj: any) => Type.value(obj) === 'HTMLDocument',
   isGlobal: (obj: any) => Type.value(obj) === 'global'
 }
+// 合并对象
+export const mergeObj = (target: any, obj: any, exclude: string[] = []) => {
+  console.log(target)
+
+  Object.keys(target).map((key) => {
+    if (obj?.[key] !== undefined && !exclude.includes(key)) {
+      console.log(key, target[key])
+
+      target[key] = obj[key]
+    }
+    // obj?.[key] !== undefined && (target[key] = obj[key])
+  })
+}
+export const dateFormat = (date: any) => dayjs(date).format('YYYY-MM-DD')
 // 保证数的运算浮点精度
 export const strip = (num: number, precision = 12) => +parseFloat(isNaN(num) ? '0' : num.toPrecision(precision))
 export const hms = (s: number, f: [string, string, string] = [':', ':', '']) =>

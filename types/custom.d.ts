@@ -5,4 +5,9 @@ declare global {
     range: number[]
   }
   type AnyObj = { [key: string]: string }
+  type Page = {
+    current: number
+    page_size: number
+    total?: number
+  }
 }

@@ -41,6 +41,11 @@ export default defineConfig({
         target: `http://api.taiwuyou.cn:9007/api/1.0/TwyAgent`, // 代理到 目标路径
         changeOrigin: true,
         rewrite: (path) => path.replace('/api', '')
+      },
+      '/upload': {
+        target: `http://api.taiwuyou.cn:9005/api/1.0/TwyUpload`, // 代理到 目标路径
+        changeOrigin: true,
+        rewrite: (path) => path.replace('/api', '')
       }
     }
   }

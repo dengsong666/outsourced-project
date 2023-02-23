@@ -8,10 +8,14 @@ import 'ant-design-vue/es/message/style/index.css'
 
 <template>
   <router-view v-if="$route.path == '/login'" />
-  <Layout v-else><router-view /></Layout>
+  <Suspense v-else>
+    <Layout><router-view /></Layout>
+  </Suspense>
 </template>
 
 <style lang="scss">
+html,
+body,
 #app {
   height: 100%;
   overflow: hidden;
