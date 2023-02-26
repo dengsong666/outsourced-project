@@ -1,11 +1,16 @@
 <script setup lang="ts">
 const userForm = reactive({
-  username: '',
-  name: '',
+  account: '',
+  nick_name: '',
+  major: '',
+  position: '',
+  avatar: '',
   password: '',
-  phone: '',
   email: '',
-  role: undefined
+  telephone: '',
+  role_id: 0,
+  tenant_id: '',
+  product_id: 0
 })
 
 function handleSubmit() {
@@ -19,22 +24,22 @@ function handleSubmit() {
       <Avatar />
     </a-form-item>
     <a-form-item name="username">
-      <a-input v-model:value="userForm.username" placeholder="用户名" />
+      <a-input v-model:value="userForm.account" placeholder="用户名" />
     </a-form-item>
     <a-form-item name="name">
-      <a-input v-model:value="userForm.name" placeholder="姓名" />
+      <a-input v-model:value="userForm.nick_name" placeholder="姓名" />
     </a-form-item>
     <a-form-item name="password">
       <a-input v-model:value="userForm.password" type="password" placeholder="密码" />
     </a-form-item>
     <a-form-item name="phone">
-      <a-input v-model:value="userForm.phone" placeholder="电话" />
+      <a-input v-model:value="userForm.telephone" placeholder="电话" />
     </a-form-item>
     <a-form-item name="email">
       <a-input v-model:value="userForm.email" placeholder="邮箱" />
     </a-form-item>
     <a-form-item name="role">
-      <a-select v-model:value="userForm.role" placeholder="角色">
+      <a-select v-model:value="userForm.role_id" placeholder="角色">
         <a-select-option value="agent">代理商</a-select-option>
         <a-select-option value="role2">系统租户</a-select-option>
         <a-select-option value="role3">系统管理员</a-select-option>

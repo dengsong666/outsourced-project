@@ -22,8 +22,7 @@ interface ResponseData<T> {
 /* 请求拦截器 */
 service.interceptors.request.use(
   (config) => {
-    //  伪代码
-    const { accessToken = null } = getLocalStorage('token')
+    const { accessToken = null } = getLocalStorage('token') ?? {}
     if (accessToken) {
       config.headers.Authorization = `Bearer ${accessToken}`
     }

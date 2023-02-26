@@ -1,16 +1,13 @@
 <script setup lang="ts">
+import { delTenant, getTenantList } from '@/api'
 import logo from '@/assets/logo.png'
+import { useTable } from '@/store'
 import { TableColumnsType } from 'ant-design-vue'
+import Form from './Form.vue'
 
-const data = Array(20)
-  .fill(0)
-  .map((item, id) => ({
-    id,
-    logo,
-    name: 'Chint' + (id + 100),
-    user_number: id + 100,
-    address: '上海市松江区思贤路3655号'
-  }))
+const router = useRouter()
+const viewTenant = (id: string) => router.push(`/agent/${id}`)
+const table = useTable(getTenantList, delTenant, viewTenant)
 
 const columns: TableColumnsType = [
   { title: 'Logo', dataIndex: 'logo' },
@@ -23,12 +20,12 @@ const columns: TableColumnsType = [
 
 <template>
   <router-view v-if="$route.params.id" />
-  <GridTable v-else :data="data" :columns="columns" @row-click="$router.push(`/tenement/${$event.id}`)">
+  <GridTable v-else :table="table" :columns="columns" @row-click="$router.push(`/agent/${$event}`)">
     <template #add>
-      <div class="p24px">暂无</div>
+      <Form @submit="table.getList()" :data="null" />
     </template>
-    <template #edit>
-      <div class="p24px">暂无</div>
+    <template #edit="form">
+      <Form @submit="table.getList()" :data="form" />
     </template>
   </GridTable>
 </template>

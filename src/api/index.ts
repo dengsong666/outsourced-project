@@ -1,6 +1,7 @@
 import http from './Http'
 
 export * from './agent'
+export * from './tenant'
 
 // 登录
 export function login(data: { account?: string; password?: string }) {

@@ -4,7 +4,6 @@ import Form from './Form.vue'
 import { TableColumnsType } from 'ant-design-vue'
 import { getAgentList, delAgent } from '@/api'
 import { useTable } from '@/store'
-import { Agent } from '@/api/types'
 const router = useRouter()
 const viewAgent = (id: string) => router.push(`/agent/${id}`)
 const table = useTable(getAgentList, delAgent, viewAgent)

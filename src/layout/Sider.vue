@@ -41,7 +41,7 @@ const handleClick: MenuClickEventHandler = ({ item, key, keyPath }) => {
           </template>
         </a-button>
       </div>
-      <p my24px>
+      <p my24px @click="$router.push('/login')">
         <i i-ant-design-logout-outlined mr8px />
         Logout
       </p>

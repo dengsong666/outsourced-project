@@ -33,8 +33,8 @@ const emit = defineEmits(['row-click', 'delete', 'edit'])
   <a-table
     v-show="layout == 'table'"
     :columns="newCol"
-    :data-source="table.list"
-    :pagination="{ pageSize: table.page_size, current: table.current }"
+    :data-source="table?.list"
+    :pagination="{ pageSize: table?.page_size, current: table?.current }"
     :custom-row="(row) => ({ onClick: () => emit('row-click', row.id) })"
   >
     <template #bodyCell="{ text, column, record }">
@@ -52,7 +52,7 @@ const emit = defineEmits(['row-click', 'delete', 'edit'])
   </a-table>
   <!-- grid布局 -->
   <div v-show="layout == 'grid'" class="grid-box bg-#363B640D p24px">
-    <div v-for="item in table.list" @click="emit('row-click', item.id)" class="p16px bg-#fff z10 box" :key="item.id">
+    <div v-for="item in table?.list" @click="emit('row-click', item.id)" class="p16px bg-#fff z10 box" :key="item.id">
       <p text-right>
         <Operation :table="table" :target="item">
           <template #edit>
