@@ -6,7 +6,7 @@ import { getAgentList, delAgent } from '@/api'
 import { useTable } from '@/store'
 const router = useRouter()
 const viewAgent = (id: string) => router.push(`/agent/${id}`)
-const table = useTable(getAgentList, delAgent, viewAgent)
+const table = useTable(getAgentList)
 const columns: TableColumnsType = [
   { title: 'Logo', dataIndex: 'logo' },
   { title: '公司名称', dataIndex: 'name' },
@@ -23,7 +23,7 @@ table.getList()
 
 <template>
   <router-view v-if="$route.params.id" />
-  <GridTable v-else :table="table" :columns="columns" @row-click="$router.push(`/agent/${$event}`)">
+  <GridTable v-else :table="table" :columns="columns" @row-click="viewAgent" @delete="delAgent($event)">
     <template #add>
       <Form @submit="table.getList()" :data="null" />
     </template>

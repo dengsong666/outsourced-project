@@ -1,29 +1,19 @@
 <script setup lang="ts">
 import { notification, TableColumnsType } from 'ant-design-vue'
 import avatar from '@/assets/avatar.png'
+import { CustomTable } from '@/store'
 defineProps<{
+  table: CustomTable
   scrollY?: number
 }>()
 const columns: TableColumnsType = [
   { title: '姓名', dataIndex: 'name' },
-  { title: '手机号', dataIndex: 'phone' },
+  { title: '手机号', dataIndex: 'telephone' },
   { title: '状态', dataIndex: 'state' },
   { title: '最近访问时间', dataIndex: 'lately_visit_time' },
   { title: '操作', dataIndex: 'operation', fixed: 'right' }
 ]
-const emit = defineEmits(['row-click'])
-const data = Array(20)
-  .fill(0)
-  .map((item, id) => ({
-    id,
-    avatar,
-    name: 'Chint' + id,
-    email: 'luckjinshun@qq.com',
-    phone: 13866668888,
-    state: !!(id % 3),
-    lately_visit_time: '2022-12-11 05:33:12'
-  }))
-
+const emit = defineEmits(['row-click', 'delete'])
 function handleSend() {
   notification.open({
     duration: 0,
@@ -47,21 +37,25 @@ function handleSend() {
       </template>
     </Modal>
   </div>
-  <a-table :columns="columns" :data-source="data" :custom-row="(row) => ({ onClick: () => emit('row-click', row) })"
-    :pagination="{ pageSize: Infinity }" :sticky="true" :scroll="{ y: scrollY || 650 }">
+  <a-table
+    :columns="columns"
+    :data-source="table.list"
+    :custom-row="(row) => ({ onClick: () => emit('row-click', row) })"
+    :pagination="{ pageSize: Infinity }"
+    :sticky="true"
+    :scroll="{ y: scrollY || 650 }"
+  >
     <template #bodyCell="{ text, column, record }">
       <template v-if="column.dataIndex === 'name'">
         <div class="flex-row">
           <img class="w40px h40px" :src="record.avatar" alt="" srcset="" />
           <div class="flex-col mx8px">
-            <span class="nowrap font-600">{{ record.name }}</span>
+            <span class="nowrap font-600">{{ record.nick_name }}</span>
             <span class="text-12px c-#A098AE">{{ record.email }}</span>
-
-
           </div>
         </div>
       </template>
-      <template v-if="column.dataIndex === 'phone'">
+      <template v-if="column.dataIndex === 'telephone'">
         <span class="font-600">{{ text }}</span>
       </template>
       <template v-if="column.dataIndex === 'state'">
@@ -79,9 +73,9 @@ function handleSend() {
             </div>
           </template>
         </Modal>
-        <Operation :target="record">
+        <Operation @delete="emit('delete', record.id)" @details="emit('row-click', record.id)">
           <template #edit>
-            <div class="p24px">暂无</div>
+            <slot name="edit" :form="record"></slot>
           </template>
         </Operation>
       </template>
@@ -90,7 +84,7 @@ function handleSend() {
 </template>
 
 <style lang="scss" scoped>
-.i-custom-send{
+.i-custom-send {
   margin-right: 30px;
 }
 :deep(.ant-pagination) {

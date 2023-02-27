@@ -1,8 +1,5 @@
 <script setup lang="ts">
 import Carousel from './Carousel.vue'
-const {
-  params: { id }
-} = useRoute() // id 用来调用接口获取公司数据填充下面
 </script>
 
 <template>
@@ -47,7 +44,7 @@ const {
   border-radius: 20px;
   background: linear-gradient(180deg, rgba(54, 59, 100, 1) 0%, rgba(76, 188, 154, 1) 100%);
   box-shadow: 0px 20px 50px 0px rgba(191, 21, 108, 0.05);
-  .openProduct{
+  .openProduct {
     // font-size: larger;
   }
 }

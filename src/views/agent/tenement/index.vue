@@ -6,8 +6,9 @@ import { TableColumnsType } from 'ant-design-vue'
 import Form from './Form.vue'
 
 const router = useRouter()
-const viewTenant = (id: string) => router.push(`/agent/${id}`)
-const table = useTable(getTenantList, delTenant, viewTenant)
+const viewTenant = (id: string) => router.push(`/tenement/${id}`)
+const table = useTable(getTenantList)
+console.log(table)
 
 const columns: TableColumnsType = [
   { title: 'Logo', dataIndex: 'logo' },
@@ -16,11 +17,12 @@ const columns: TableColumnsType = [
   { title: '地址', dataIndex: 'address' },
   { title: '操作', dataIndex: 'operation', fixed: 'right' }
 ]
+table.getList()
 </script>
 
 <template>
   <router-view v-if="$route.params.id" />
-  <GridTable v-else :table="table" :columns="columns" @row-click="$router.push(`/agent/${$event}`)">
+  <GridTable v-else :table="table" :columns="columns" @row-click="viewTenant" @delete="delTenant($event)">
     <template #add>
       <Form @submit="table.getList()" :data="null" />
     </template>

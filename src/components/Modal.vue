@@ -10,6 +10,10 @@ const visible = ref(false)
 const { bus } = useCommon()
 watchEffect(() => visible.value && duration && setTimeout(() => (visible.value = false), duration * 1000))
 bus.on('close', () => (visible.value = false))
+
+function handleClick() {
+  console.log(24356)
+}
 </script>
 
 <template>
@@ -18,7 +22,7 @@ bus.on('close', () => (visible.value = false))
     <template #closeIcon>
       <i class="i-ant-design-close-circle-outlined c-red" />
     </template>
-    <slot name="content"> </slot>
+    <slot name="content" @close="handleClick"> </slot>
   </a-modal>
 </template>
 

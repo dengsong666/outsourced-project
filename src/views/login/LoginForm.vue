@@ -4,8 +4,8 @@ import { setLocalStorage } from '@/utils'
 
 const router = useRouter()
 const loginForm = reactive({
-  account: 'admin',
-  password: '1qaz2wsx'
+  account: 'test2',
+  password: '123456'
 })
 const onFinish = async () => {
   const { data } = await login(loginForm)

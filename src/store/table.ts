@@ -1,5 +1,5 @@
 // 传参进行局部管理（争对一个页面两个表格的情况）
-export const useTable = (get: Function = () => {}, del: Function = () => {}, view: Function = () => {}) =>
+export const useTable = (get: Function = () => {}) =>
   defineStore(get.name, {
     state: () => ({
       current: 1,
@@ -16,13 +16,6 @@ export const useTable = (get: Function = () => {}, del: Function = () => {}, vie
         this.list = list
         this.total = total
         return current
-      },
-      async deleteRow(id: string | number) {
-        await del(id)
-        this.getList()
-      },
-      async viewRow(id: string | number) {
-        await view(id)
       }
     }
   })()

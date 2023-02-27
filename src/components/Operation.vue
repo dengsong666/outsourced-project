@@ -1,11 +1,5 @@
 <script setup lang="ts">
-import { CustomTable } from '@/store'
-
-defineProps<{
-  table: CustomTable
-  target: any
-}>()
-const emit = defineEmits(['details'])
+const emit = defineEmits(['details', 'delete'])
 </script>
 
 <template>
@@ -18,8 +12,8 @@ const emit = defineEmits(['details'])
             <slot name="edit"></slot>
           </template>
         </Modal>
-        <a-button type="primary" @click="table.viewRow(target.id)">详情</a-button>
-        <a-popconfirm title="你想删除该行吗？" @confirm="table.deleteRow(target.id)">
+        <a-button type="primary" @click="emit('details')">详情</a-button>
+        <a-popconfirm title="你想删除该行吗？" @confirm="emit('delete')">
           <a-button type="primary">删除</a-button>
         </a-popconfirm>
       </div>

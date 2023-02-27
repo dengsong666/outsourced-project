@@ -1,4 +1,5 @@
 import dayjs from 'dayjs'
+export const moneyFormat = (v: number) => v.toString().replace(/(\d)(?=(?:\d{3})+$)/g, '$1,')
 // 判断对象类型
 export const Type = {
   value: (obj: any) => Object.prototype.toString.call(obj).replace(/^\[object (\S+)\]$/, '$1'),
@@ -39,3 +40,15 @@ export const hms = (s: number, f: [string, string, string] = [':', ':', '']) =>
     .slice(11, 19)
     .replace(/(\d+)/, (r, p) => `${parseInt(`${s / 86400}`) * 24 + +p}`)
     .replace(/(\d+):(\d+):(\d+)/g, (r, p1, p2, p3) => `${p1 + f[0] + p2 + f[1] + p3 + f[2]}`)
+
+export const arrOneToN = <T = any>(source: T[], num: number) =>
+  source.reduce((v: T[][], item: T, index: number) => {
+    let r = null
+    if (index % num === 0) {
+      r = [...v, [item]]
+    } else {
+      v[v.length - 1].push(item)
+      r = v
+    }
+    return r
+  }, [])

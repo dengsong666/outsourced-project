@@ -1,4 +1,52 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import {
+  delProductUser,
+  getProductUserList,
+  getTenantProductList,
+  getTenantProductModuleList,
+  openTenantProductModuleState,
+  openTenantProductState,
+  updateTenantProductState
+} from '@/api'
+import { ProductModule } from '@/api/types/tenant'
+import { useTable } from '@/store'
+import { arrOneToN } from '@/utils'
+
+import UserForm from './UserForm.vue'
+
+const tenant_id = useRoute().params.id as string
+let product_modules: ProductModule[] = []
+const { data } = await getTenantProductList({ tenant_id })
+const table = useTable(getProductUserList)
+const stateText = (state: number) => {
+  switch (state) {
+    case 0:
+      return '开通'
+    case 1:
+      return '禁用'
+    case 2:
+      return '启用'
+  }
+}
+async function changeProduct(product_id: number, product_state: number) {
+  switch (product_state) {
+    case 0:
+      return await openTenantProductState({ product_id, tenant_id })
+    case 1:
+      return await updateTenantProductState({ product_id, tenant_id, product_state: 2 })
+    case 2:
+      return await updateTenantProductState({ product_id, tenant_id, product_state: 1 })
+  }
+}
+async function changeProductModuleState(product_id: number, module_id: number, module_state: number) {
+  if (!module_state) await openTenantProductModuleState({ product_id, tenant_id, module_id })
+}
+
+async function getProductModule(product_id: number) {
+  const { data } = await getTenantProductModuleList({ tenant_id, product_id })
+  product_modules = data.list
+}
+</script>
 
 <template>
   <div>
@@ -9,37 +57,46 @@
       <template #nextArrow>
         <i class="i-ant-design-caret-right-outlined" />
       </template>
-      <div class="card-box" v-for="v in 2">
-        <div v-for="v in 4" class="box">
-          <img class="rd-t-20px w100%" src="https://img.js.design/assets/img/63a9032652bcbaabe80f12ae.png#6dd5bb8d9dd20a7363c8d2d92b06542f" alt="" srcset="" />
+      <div class="card-box" v-for="productGroup in arrOneToN([...data.list, ...data.list, ...data.list, ...data.list, ...data.list], 4)">
+        <div v-for="product in productGroup" class="box">
+          <img class="rd-t-20px w100% h215px" :src="product.product_icon" alt="" srcset="" />
           <div class="flex-row justify-between m16px">
-            <span class="font-700 text-20px">智慧电力运维平台</span>
-            <a-button type="primary" :disabled="false">开通</a-button>
+            <span class="font-700 text-20px">{{ product.product_name }}</span>
+            <a-button type="primary" @click="changeProduct(product.product_id, product.product_state)" :class="[product.product_state ? 'btn-cancel' : 'btn-save']">
+              {{ stateText(product.product_state) }}
+            </a-button>
           </div>
           <div class="mx16px">
             <Modal title="开通模块">
-              <i class="i-ant-design-appstore-outlined" />
+              <a-button type="text" class="p0 mr8px" :disabled="!product.product_state" @click="getProductModule(product.product_id)">
+                <i class="i-ant-design-appstore-outlined" :style="`color:${product.product_state ? '#000' : '#888'}`" />
+              </a-button>
               <template #content>
-                <div></div>
                 <div class="overflow-y-scroll px24px py8px">
-                  <div v-for="v in 8" class="flex-row justify-between my8px">
-                    <span>资产管理</span>
-                    <a-button type="primary" :disabled="false" class="btn">
+                  <div v-if="product_modules?.length" v-for="md in product_modules" class="flex-row justify-between my8px">
+                    <span>{{ md.module_name }}</span>
+                    <a-button type="primary" @click="changeProductModuleState(product.product_id, md.product_id, md.state)" :disabled="!!md.state" class="btn">
                       <template #icon>
                         <i class="i-ant-design-tag-outlined" />
                       </template>
                       开通
                     </a-button>
                   </div>
+                  <div v-else>暂无模块</div>
                 </div>
               </template>
             </Modal>
             <Modal title="创建用户" width="50%">
-              <i class="i-ant-design-user-outlined" />
+              <a-button type="text" class="p0 mr8px" :disabled="!product.product_state" @click="table.getList({ tenant_id, page_size: 999 })">
+                <i class="i-ant-design-user-outlined" :style="`color:${product.product_state ? '#000' : '#888'}`" />
+              </a-button>
               <template #content>
-                <User>
+                <User :table="table" @delete="delProductUser($event, tenant_id), table.getList({ tenant_id, page_size: 999 })">
                   <template #add>
-                    <div class="p24px">暂无</div>
+                    <UserForm :data="{ tenant_id, product_id: product.product_id }" @submit="table.getList({ tenant_id, page_size: 999 })" />
+                  </template>
+                  <template #edit="{ form }">
+                    <UserForm :data="{ tenant_id, product_id: product.product_id, ...form }" @submit="table.getList({ tenant_id, page_size: 999 })" />
                   </template>
                 </User>
               </template>
