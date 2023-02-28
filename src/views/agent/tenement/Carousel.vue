@@ -22,7 +22,7 @@ const product = reactive<{
   list: [],
   modules: []
 })
-const table = useTable(getProductUserList)
+const table = useTable(getProductUserList, delProductUser)
 const stateText = (state: number) => {
   switch (state) {
     case 0:
@@ -106,7 +106,7 @@ async function getProductModule(product_id: number) {
                 <i class="i-ant-design-user-outlined" :style="`color:${p.product_state ? '#000' : '#888'}`" />
               </a-button>
               <template #content>
-                <User :table="table" @delete="delProductUser($event, tenant_id), table.getList({ tenant_id, page_size: 999 })">
+                <User :table="table" @delete="table.delRow($event, tenant_id), table.getList({ tenant_id, page_size: 999 })">
                   <template #add>
                     <UserForm :data="{ tenant_id, product_id: p.product_id }" @submit="table.getList({ tenant_id, page_size: 999 })" />
                   </template>

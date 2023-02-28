@@ -7,8 +7,7 @@ import Form from './Form.vue'
 
 const router = useRouter()
 const viewTenant = (id: string) => router.push(`/tenement/${id}`)
-const table = useTable(getTenantList)
-console.log(table)
+const table = useTable(getTenantList, delTenant)
 
 const columns: TableColumnsType = [
   { title: 'Logo', dataIndex: 'logo' },
@@ -22,7 +21,7 @@ table.getList()
 
 <template>
   <router-view v-if="$route.params.id" />
-  <GridTable v-else :table="table" :columns="columns" @row-click="viewTenant" @delete="delTenant($event)">
+  <GridTable v-else :table="table" :columns="columns" @row-click="viewTenant" @delete="table.delRow($event)">
     <template #add>
       <Form @submit="table.getList()" :data="null" />
     </template>

@@ -5,6 +5,7 @@ declare global {
     range: number[]
   }
   type AnyObj = { [key: string]: string }
+  type AsyncFn = (...args: any[]) => Promise<any> | any
   type Page = {
     current: number
     page_size: number
