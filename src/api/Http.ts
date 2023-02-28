@@ -1,4 +1,4 @@
-import { getLocalStorage } from '@/utils'
+import { delLocalStorage, getLocalStorage } from '@/utils'
 import axios from 'axios'
 import type { AxiosInstance, AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios'
 import { message } from 'ant-design-vue'
@@ -45,6 +45,11 @@ service.interceptors.response.use(
     } else {
       // 处理业务错误
       message.error(msg)
+      switch (code) {
+        case 1401:
+          delLocalStorage('token')
+          window.location.href = '/login'
+      }
       return Promise.reject(msg)
     }
   },
