@@ -1,8 +1,10 @@
 <script setup lang="ts">
 import { getAgent } from '@/api'
+import { useTable } from '@/store'
 import { dateFormat } from '@/utils'
 import UserForm from './UserForm.vue'
 const { data } = await getAgent({ id: useRoute().params.id as string })
+const table = useTable()
 console.log(data)
 </script>
 
@@ -49,7 +51,7 @@ console.log(data)
       </a-tooltip>
     </div>
     <div class="grid-item3">
-      <User :scroll-y="300">
+      <User :scroll-y="300" :table="table">
         <template #add>
           <UserForm />
         </template>
