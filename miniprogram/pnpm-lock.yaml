@@ -1,0 +1,21 @@
+lockfileVersion: '6.0'
+
+dependencies:
+  '@vant/weapp':
+    specifier: ^1.10.19
+    version: 1.10.19
+
+devDependencies:
+  miniprogram-api-typings:
+    specifier: ^3.10.0
+    version: 3.10.0
+
+packages:
+
+  /@vant/weapp@1.10.19:
+    resolution: {integrity: sha512-RStOPlSELi9lqim9dGagguViUVMNnfZaEceZ248JZgPjn5TzL2nwwHGWl9VI69SBPC+5MPS+LXm7Z4jcdscFeg==}
+    dev: false
+
+  /miniprogram-api-typings@3.10.0:
+    resolution: {integrity: sha512-pvGZmj9uamahlqfPj1bwn5Cd/bjImc5ehyAha/QfA9limG6HO9Plj/yROfSChK6J6+VUoVB9cnNthx4XuI0T2Q==}
+    dev: true

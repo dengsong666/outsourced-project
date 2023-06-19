@@ -1,0 +1,16 @@
+{
+  "name": "gaokaoqiao",
+  "version": "1.0.0",
+  "scripts": {},
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@vant/weapp": "^1.10.19"
+  },
+  "devDependencies": {
+    "miniprogram-api-typings": "^3.10.0"
+  },
+  "main": ".eslintrc.js",
+  "description": ""
+}

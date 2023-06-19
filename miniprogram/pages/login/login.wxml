@@ -1,0 +1,20 @@
+<!--pages/login/login.wxml-->
+<view style="padding: 48rpx;background-color:#f7f6f9;height: 100vh;">
+  <text style="font-size: 64rpx">您好！</text>
+  <view style="margin-top: 32rpx;">
+    <text>欢迎来到XXXX，请填写您的</text>
+    <text style="color: #11d180;">相关信息</text>
+  </view>
+  <view style="background-color: #fff;margin: 32rpx 0;border-radius: 32rpx;">
+    <van-field label="学生姓名" model:value="{{ name }}" placeholder="请输入" input-align="right"  />
+    <van-field label="我是" model:value="{{ role }}" placeholder="请选择" input-align="right" right-icon="arrow-down" bind:click-input="onClickInput" data-filed="role" />
+    <van-field label="手机" model:value="{{ phone }}" placeholder="请输入" input-align="right" />
+    <van-field label="高中" model:value="{{ name }}" placeholder="请输入" input-align="right" />
+    <van-field label="文理" model:value="{{ subject }}" placeholder="请选择" input-align="right" right-icon="arrow-down" bind:click-input="onClickInput" data-filed="subject"/>
+    <van-field title-width="10em" label="高校/国家专项资格" model:value="{{ name }}" placeholder="请选择" input-align="right" right-icon="arrow-down" bind:click-input="onClickInput" data-filed="role"/>
+  </view>
+  <button style="border-radius: 48rpx;background-color: #242424;" type="primary" bindtap="onConfirm">确定</button>
+  <van-popup show="{{ show_select }}" position="bottom" bind:close="onClosePopup">
+    <van-picker columns="{{ columns[filed] || [] }}" bind:change="onChange" />
+  </van-popup>
+</view>
