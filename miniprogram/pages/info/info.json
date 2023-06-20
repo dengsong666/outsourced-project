@@ -5,6 +5,8 @@
     "van-collapse-item": "@vant/weapp/collapse-item/index",
     "van-popup": "@vant/weapp/popup/index",
     "van-field": "@vant/weapp/field/index",
+    "van-dialog": "@vant/weapp/dialog/index",
+    "van-search": "@vant/weapp/search/index",
     "van-icon": "@vant/weapp/icon/index"
   }
 }

@@ -1,5 +1,4 @@
 /**app.wxss**/
-@import "./assets/icon/index.scss";
 
 .container {
   height: 100%;
@@ -15,3 +14,46 @@ button {
   background-color: #242424;
   color: #fff;
 }
+
+@font-face {
+  font-family: "iconfont";
+  /* Project id 4131676 */
+  src: url('//at.alicdn.com/t/c/font_4131676_x6q9n2z0rnn.woff2?t=1687247800323') format('woff2'),
+    url('//at.alicdn.com/t/c/font_4131676_x6q9n2z0rnn.woff?t=1687247800323') format('woff'),
+    url('//at.alicdn.com/t/c/font_4131676_x6q9n2z0rnn.ttf?t=1687247800323') format('truetype');
+}
+
+.icon{
+  font-family: "iconfont" !important;
+  font-size: 32rpx;
+  font-style: normal;
+  margin: 16rpx;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-university:before {
+  content: "\e689";
+}
+
+.icon-auth:before {
+  content: "\e690";
+}
+
+.icon-sex-girl:before {
+  content: "\e605";
+}
+
+.icon-sex-boy:before {
+  content: "\e606";
+}
+
+.icon-message:before {
+  content: "\e612";
+}
+
+.icon-grade:before {
+  content: "\e63a";
+}
+
+

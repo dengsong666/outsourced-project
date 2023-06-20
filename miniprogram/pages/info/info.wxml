@@ -21,7 +21,7 @@
     </view>
   </view>
 </view>
-<van-collapse value="{{ activeNames }}" bind:change="onCollapseChange">
+<van-collapse value="{{ active_collapse }}" bind:change="onCollapseChange">
   <van-collapse-item name="1">
     <view slot="title">
       <van-icon class-prefix="icon" name="grade" color="#01C78B" />学生成绩
@@ -29,24 +29,28 @@
     <view slot="value">
       <text class="upload-grade" bindtap="onUploadGrade">上传成绩</text>
     </view>
-
-    代码是写出来给人看的，附带能在机器上运行
+    <view class="student-grade">
+      <text class="label">高考总分</text>
+      <text><text class="value">563</text>分</text>
+    </view>
   </van-collapse-item>
   <van-collapse-item name="2">
     <view slot="title">
       <van-icon class-prefix="icon" name="university" color="#01C78B" />感兴趣高校
     </view>
-
-    代码是写出来给人看的，附带能在机器上运行
-  </van-collapse-item>
-  <van-collapse-item title="申请回电咨询的高校" name="3">
-    代码是写出来给人看的，附带能在机器上运行
+    <view class="search-box">
+      <van-search value="{{ college_name }}" placeholder="请输入大学名称" bind:change="onSearch" />
+      <view class="search-panel" wx:if="{{college_name}}" >
+        <text wx:for="[,,,,,,]">四川大学</text>
+      </view>
+    </view>
+    <view style="display: flex;justify-content: center;color: #000;font-size: 32rpx;">限选不超过12所</view>
+    <view class="selected-college">
+      <view wx:for="[,,,,,,]">xxxx大学</view>
+    </view>
   </van-collapse-item>
 </van-collapse>
-
-<van-popup show="{{ show_upload_grade }}">
-  <view style="display: flex;justify-content: center;margin-top: 16px;">高考成绩录入</view>
-  <van-field label="总分" model:value="{{ grade_total }}" placeholder="请输入" input-align="right"  />
-  <van-field label="省排名" model:value="{{ grade_rank }}" placeholder="请输入"  input-align="right"/>
-  <button bindtap="onConfirmGrade">确认</button>
-</van-popup>
+<van-dialog use-slot title="高考成绩录入" show="{{ show_upload_grade }}" before-close="{{onBeforeClose}}">
+  <van-field label="总分" model:value="{{ grade_total }}" placeholder="请输入" input-align="right" />
+  <van-field label="省排名" model:value="{{ grade_rank }}" placeholder="请输入" input-align="right" />
+</van-dialog>
