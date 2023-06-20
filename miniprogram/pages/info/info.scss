@@ -1,0 +1,70 @@
+/* pages/info/info.wxss */
+.info-box {
+  padding: 16px;
+  display: flex;
+  background: linear-gradient(to right, #fff, #d2f4ea);
+}
+
+.avatar {
+  position: relative;
+
+  .icon-sex-boy {
+    color: #40B0F5;
+    position: absolute;
+    bottom: 12px;
+    right: 12px;
+  }
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+
+  .name {
+    position: relative;
+    display: flex;
+    margin-right: 24px;
+
+    .icon-auth {
+      color: #40B0F5;
+      position: absolute;
+      top: -10px;
+      right: -20px;
+    }
+  }
+
+  .msg {
+    position: absolute;
+    right: -16px;
+    background-color: #01C78B;
+    padding: 2px 16px 2px 4px;
+    border-radius: 8px 0 0 8px;
+  }
+}
+
+.label {
+  display: inline-block;
+  font-size: 10px;
+  background-color: #dae2de;
+  padding: 2px 4px;
+  border-radius: 8px;
+  margin-right: 8px;
+}
+
+.upload-grade {
+  padding: 6px;
+  background-color: black;
+  color: #fff;
+  border-radius: 8px;
+  font-size: 12px;
+}
+
+.van-uploader__upload {
+  border-radius: 50%;
+}
+.van-popup{
+  border-radius: 16px;
+  width: 80%;
+}

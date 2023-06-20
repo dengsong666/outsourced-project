@@ -1,0 +1,52 @@
+<!--pages/info/info.wxml-->
+<view class="info-box">
+  <view class="avatar">
+    <van-uploader file-list="{{ avatar }}" bind:after-read="onAfterUploadRead" />
+    <van-icon class-prefix="icon" name="sex-boy" />
+  </view>
+  <view class="info">
+    <view style="display: flex;position: relative;">
+      <view class="name">王小明
+        <van-icon class-prefix="icon" name="auth" />
+      </view>
+      <text class="label">本人</text>
+      <view class="msg">
+        <van-icon class-prefix="icon" name="message" color="#fff" dot />
+      </view>
+    </view>
+    <view>
+      <text class="label">xxx附属中学</text>
+      <text class="label">文</text>
+      <text class="label">15921435567</text>
+    </view>
+  </view>
+</view>
+<van-collapse value="{{ activeNames }}" bind:change="onCollapseChange">
+  <van-collapse-item name="1">
+    <view slot="title">
+      <van-icon class-prefix="icon" name="grade" color="#01C78B" />学生成绩
+    </view>
+    <view slot="value">
+      <text class="upload-grade" bindtap="onUploadGrade">上传成绩</text>
+    </view>
+
+    代码是写出来给人看的，附带能在机器上运行
+  </van-collapse-item>
+  <van-collapse-item name="2">
+    <view slot="title">
+      <van-icon class-prefix="icon" name="university" color="#01C78B" />感兴趣高校
+    </view>
+
+    代码是写出来给人看的，附带能在机器上运行
+  </van-collapse-item>
+  <van-collapse-item title="申请回电咨询的高校" name="3">
+    代码是写出来给人看的，附带能在机器上运行
+  </van-collapse-item>
+</van-collapse>
+
+<van-popup show="{{ show_upload_grade }}">
+  <view style="display: flex;justify-content: center;margin-top: 16px;">高考成绩录入</view>
+  <van-field label="总分" model:value="{{ grade_total }}" placeholder="请输入" input-align="right"  />
+  <van-field label="省排名" model:value="{{ grade_rank }}" placeholder="请输入"  input-align="right"/>
+  <button bindtap="onConfirmGrade">确认</button>
+</van-popup>

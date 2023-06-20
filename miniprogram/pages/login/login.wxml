@@ -13,7 +13,7 @@
     <van-field label="文理" model:value="{{ subject }}" placeholder="请选择" input-align="right" right-icon="arrow-down" bind:click-input="onClickInput" data-filed="subject"/>
     <van-field title-width="10em" label="高校/国家专项资格" model:value="{{ name }}" placeholder="请选择" input-align="right" right-icon="arrow-down" bind:click-input="onClickInput" data-filed="role"/>
   </view>
-  <button style="border-radius: 48rpx;background-color: #242424;" type="primary" bindtap="onConfirm">确定</button>
+  <button style="border-radius: 48rpx;" type="primary" bindtap="onConfirm">确定</button>
   <van-popup show="{{ show_select }}" position="bottom" bind:close="onClosePopup">
     <van-picker columns="{{ columns[filed] || [] }}" bind:change="onChange" />
   </van-popup>
