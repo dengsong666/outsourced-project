@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style type="text/css">
+    body {
+      margin: 0;
+      height: 100vh;
+      color: white;
+      background-image: url("./assets/cover.png");
+      backdrop-filter: blur(16px);
+      background-size: 100% 100%;
+      background-repeat: no-repeat;
+    }
+
+    #lyricsContainer {
+      position: relative;
+      overflow-y: auto;
+      height: calc(100% - 424px - 60px);
+      line-height: 1.8em;
+      font-size: 14px;
+      text-align: center;
+      margin-top: 42px;
+      scroll-behavior: smooth;
+    }
+
+    #lyricsContainer::-webkit-scrollbar {
+      display: none;
+    }
+
+    .cover-playing {
+      animation: cover 10s linear infinite;
+    }
+
+    @keyframes cover {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+  </style>
+  <script type="module" src="./main.ts"></script>
+</head>
+
+<body>
+  <!-- chrome://settings/content/sound -->
+  <img src="./assets/logo.png" alt="logo" height="28px" style="margin: 16px 24px">
+  <div style="display: flex; flex-direction: column;align-items: center;height: calc(100% - 60px);">
+    <div style="display: grid;place-items: center;gap: 4px;">
+      <span style="font-size: 18px;margin-bottom: 10px;">达尔文</span>
+      <span style="font-size: 14px;">作词：林俊杰</span>
+      <span style="font-size: 14px;">作曲：词曲鱼塘AI</span>
+      <span style="font-size: 14px;margin-bottom: 22px;">演唱：词曲鱼塘AI</span>
+    </div>
+    <img id="cover" src="./assets/cover.png" alt="封面" width="250px" height="250px"
+      style="padding: 4px;border-radius: 50%;background-image: url('./assets/cd.png');background-position: center;">
+    <div id="lyricsContainer"></div>
+  </div>
+
+</body>
+
+</html>
