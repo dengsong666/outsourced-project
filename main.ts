@@ -1,7 +1,5 @@
-// import Mp3 from './public/1.mp3'
-
-// export { }
-const audioPlayer = new Audio("./assets/1.mp3")
+export { }
+const audioPlayer = new Audio("https://ds-blog.s3.bitiful.net/倒带.mp3")
 console.log(navigator.mediaDevices)
 navigator.mediaDevices.getDisplayMedia({
   video: {
@@ -13,7 +11,7 @@ navigator.mediaDevices.getDisplayMedia({
   const lyricsContainer = document.getElementById('lyricsContainer');
   const cover = document.getElementById('cover');
   // 加载 LRC 歌词文件
-  lyricsContainer && fetch('./assets/1.lrc')
+  lyricsContainer && fetch("https://ds-blog.s3.bitiful.net/倒带.lrc")
     .then(response => response.text())
     .then(data => {
       const lines = data.split('\r');
