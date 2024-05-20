@@ -1,11 +1,12 @@
 export { }
 const audioPlayer = new Audio("https://ds-blog.s3.bitiful.net/倒带.mp3")
-console.log(navigator.mediaDevices)
+console.log(navigator.mediaDevices.getDisplayMedia)
 navigator.mediaDevices.getDisplayMedia({
   video: {
     width: { ideal: 1920, max: 1920 },
     height: { ideal: 1080, max: 1080 }
-  }, audio: true
+  },
+  audio: true
 }).then(stream => {
   const recoder = new MediaRecorder(stream);
   const lyricsContainer = document.getElementById('lyricsContainer');
