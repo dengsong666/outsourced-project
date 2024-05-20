@@ -2,10 +2,7 @@ export { }
 const audioPlayer = new Audio("https://ds-blog.s3.bitiful.net/倒带.mp3")
 console.log(navigator.mediaDevices.getUserMedia)
 navigator.mediaDevices.getUserMedia({
-  video: {
-    width: { ideal: 1920, max: 1920 },
-    height: { ideal: 1080, max: 1080 }
-  },
+  video: true,
   audio: true
 }).then(stream => {
   const recoder = new MediaRecorder(stream);
