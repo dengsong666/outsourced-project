@@ -10,6 +10,7 @@
     body {
       margin: 0;
       height: 100%;
+      overflow: hidden;
     }
 
     body {
@@ -20,7 +21,7 @@
       background-repeat: no-repeat;
     }
 
-    #lyricsContainer {
+    #lyrics {
       position: relative;
       overflow-y: auto;
       height: calc(100% - 424px - 60px);
@@ -30,7 +31,7 @@
       scroll-behavior: smooth;
     }
 
-    #lyricsContainer::-webkit-scrollbar {
+    #lyrics::-webkit-scrollbar {
       display: none;
     }
 
@@ -53,7 +54,7 @@
 
 <body>
   <!-- chrome://settings/content/sound -->
-  <img src="./assets/logo.png" alt="logo" height="28px" style="margin: 16px 24px">
+  <img src="./assets/logo.png" alt="logo" style="height: 28px; margin: 16px 24px">
   <div style="display: flex; flex-direction: column;align-items: center;height: calc(100% - 60px);">
     <div style="display: grid;place-items: center;gap: 4px;">
       <span style="font-size: 18px;margin-bottom: 10px;">达尔文</span>
@@ -61,11 +62,10 @@
       <span style="font-size: 14px;">作曲：词曲鱼塘AI</span>
       <span style="font-size: 14px;">演唱：词曲鱼塘AI</span>
     </div>
-    <img id="cover" src="./assets/cover.png" alt="封面" width="250px" height="250px"
-      style="margin: 22px 0; padding: 4px;border-radius: 50%;background-image: url('./assets/cd.png');background-position: center;">
-    <div id="lyricsContainer"></div>
+    <img id="cover" src="./assets/cover.png" alt="封面"
+      style="width: 250px;height: 250px; margin: 22px 0; padding: 4px;border-radius: 50%;background-image: url('./assets/cd.png');background-position: center;">
+    <div id="lyrics"></div>
   </div>
-
 </body>
 
 </html>
