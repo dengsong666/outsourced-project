@@ -37,13 +37,13 @@ export default ({ mode }) => {
         '#': resolve(__dirname, './types')
       }
     },
-    css: {
-      preprocessorOptions: {
-        scss: {
-          additionalData: `@use "@/styles/global.scss" as *;`
-        }
-      }
-    },
+    // css: {
+    //   preprocessorOptions: {
+    //     scss: {
+    //       additionalData: `@use "@/styles/global.scss" as *;`
+    //     }
+    //   }
+    // },
     server: {
       host: '0.0.0.0',
       port: 3000,

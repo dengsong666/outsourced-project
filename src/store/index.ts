@@ -6,9 +6,10 @@ export function setupStore(app: App<Element>) {
 }
 export const useCommon = defineStore('common', {
   state: () => ({
-    xxx: true
+    showLogin: false,
+    autoLogin: false
   }),
   actions: {
-    Func() {}
+    Func() { }
   }
 })

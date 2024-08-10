@@ -1,15 +1,21 @@
+html,
+body {
+  height: 100%;
+}
+
 h1,
 h2,
 h3,
 h4 {
   margin: 0;
 }
-ul{
+
+ul {
   padding: 0;
 }
 
-li{
-  list-style:none
+li {
+  list-style: none
 }
 
 a {
@@ -17,8 +23,15 @@ a {
 }
 
 pre {
-  white-space: pre-wrap; /* css-3 */
-  word-wrap: break-word; /* InternetExplorer5.5+ */
+  white-space: pre-wrap;
+  /* css-3 */
+  word-wrap: break-word;
+  /* InternetExplorer5.5+ */
 }
 
-input, select, textarea,pre { font-family: inherit; }
+input,
+select,
+textarea,
+pre {
+  font-family: inherit;
+}
