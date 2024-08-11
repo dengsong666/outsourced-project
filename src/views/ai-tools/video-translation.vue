@@ -49,16 +49,23 @@ function onTranslate() { }
 </script>
 
 <template>
-  <div flex justify-between items-center class="rd-16px bg-gray-200" p24px>
-    <n-upload ref="upload" action="https://www.mocky.io/v2/5e4bafc63100007100d8b70f" :default-upload="false">
-      <div grid-center class="rd-8px" text-white bg-black w200px h160px><i w80px h80px i-custom-upload></i></div>
+  <div flex-col md:flex-row gap24px justify-between items-center class="rd-16px bg-gray-200" p24px>
+    <n-upload ref="upload" action="https://www.mocky.io/v2/5e4bafc63100007100d8b70f" :show-file-list="false"
+      :default-upload="false">
+      <div grid-center class="rd-8px" text-white bg-black md:w200px md:h200px w40vw h40vw>
+        <i md:w80px md:h80px class="w50% h50%" i-custom-upload></i>
+      </div>
     </n-upload>
-    <n-progress type="line" :percentage="30" rail-color="white" indicator-placement="inside" />
-    <n-upload ref="upload" action="https://www.mocky.io/v2/5e4bafc63100007100d8b70f" :default-upload="false">
-      <div grid-center class="rd-8px" text-white bg-black w200px h160px><i w80px h80px i-custom-download></i></div>
+    <n-progress my64px type="line" :percentage="30" rail-color="white" indicator-placement="inside" />
+    <n-upload ref="upload" action="https://www.mocky.io/v2/5e4bafc63100007100d8b70f" :show-file-list="false"
+      :default-upload="false">
+      <div grid-center class="rd-8px" text-white bg-black md:w200px md:h200px w40vw h40vw>
+        <i md:w80px md:h80px class="w50% h50%" i-custom-download></i>
+      </div>
     </n-upload>
   </div>
-  <n-form ref="formRef" :label-width="80" :model="form" :rules="rules" label-align="left" label-placement="left" mt24px>
+  <n-form ref="formRef" :label-width="100" :model="form" :rules="rules" label-align="left" label-placement="left"
+    mt24px>
     <n-form-item label="初始语言" path="initlang">
       <n-select v-model:value="form.initlang" :options="langs" />
     </n-form-item>
@@ -109,9 +116,5 @@ function onTranslate() { }
 <style scoped lang='scss'>
 :deep(.n-upload) {
   text-align: center;
-}
-
-:deep(.n-form-item-label__text) {
-  text-align-last: justify;
 }
 </style>

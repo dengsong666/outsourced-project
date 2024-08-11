@@ -22,10 +22,11 @@ function onGetCode() {
   // common.getLoginCode(form.phone)
   isGetCode.value = true
 }
+// https://cloud.tencent.com/developer/article/1677630
 </script>
 
 <template>
-  <n-modal v-model:show="common.showLogin" preset="card" w600px>
+  <n-modal v-model:show="common.showLogin" preset="card" md:w600px w90vw>
     <n-tabs default-value="code" size="large" justify-content="space-evenly">
       <n-tab-pane name="code" tab="验证码登录">
         <n-form :model="form" :rules="rules" label-placement="left">
@@ -34,7 +35,7 @@ function onGetCode() {
           </n-form-item>
           <n-form-item path="code">
             <n-input placeholder="请输入验证码" v-model:value="form.code" />
-            <div w5em ml16px>
+            <div w5em ml16px text-center>
               <n-countdown v-if="isGetCode" :render="({ seconds }) => `${String(seconds).padStart(2, '0')}秒`"
                 :duration="59 * 1000" :active="isGetCode" />
               <n-button v-else type="primary" @click="onGetCode">验证码</n-button>
@@ -49,7 +50,7 @@ function onGetCode() {
       </n-tab-pane>
       <n-tab-pane name="wechat" tab="微信登录">
         <div text-center>
-          <img w200px h200px src="./pay.png" alt="">
+          <img md:w200px md:h200px src="./pay.png" alt="">
         </div>
       </n-tab-pane>
     </n-tabs>

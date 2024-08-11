@@ -21,10 +21,10 @@ function onSave() {
 </script>
 
 <template>
-  <n-form ref="formRef" :label-width="80" :model="form" :rules="rules" class="w50%">
+  <n-form ref="formRef" label-placement="left" :label-width="80" :model="form" :rules="rules" class="md:w50%">
     <n-form-item label="头像" path="user.name">
       <n-upload action="https://www.mocky.io/v2/5e4bafc63100007100d8b70f" list-type="image-card">
-        <span text-24px>+</span>
+        <span md:text-24px text-128px>+</span>
       </n-upload>
     </n-form-item>
     <n-form-item label="用户名" path="user.name">

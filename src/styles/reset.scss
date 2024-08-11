@@ -1,6 +1,7 @@
 html,
 body {
   height: 100%;
+  font-size: 16px;
 }
 
 h1,
@@ -34,4 +35,13 @@ select,
 textarea,
 pre {
   font-family: inherit;
+}
+
+
+.n-form-item-label__text {
+  text-align-last: justify;
+}
+
+@media (max-width: 767.9px) {
+  // --n-font-size
 }

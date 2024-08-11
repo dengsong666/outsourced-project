@@ -52,8 +52,8 @@ const group = ref()
 
   </template>
   <template v-else>
-    <div flex flex-wrap gap-24px class="bg-#f7f8fa p24px rd-16px">
-      <div v-for="item in groups" bg-white p8px class="rd-8px" flex-col justify-evenly h100px w100px
+    <div md:grid-1-10-24 grid-1-3-48 class="bg-#f7f8fa p24px rd-16px">
+      <div v-for="item in groups" bg-white p16px class="rd-8px" box-border flex-col gap-16px justify-evenly h-fit w-full
         @click="group = item, $router.push({ hash: `#${item.count}` })">
         <span>{{ item.count }}点</span>
         <span>￥ {{ item.price }}</span>
