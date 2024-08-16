@@ -5,7 +5,7 @@ import AiTools from '@/views/ai-tools/index.vue'
 export const basicRoutes: RouteRecordRaw[] = [
   {
     path: '/',
-    redirect: '/user',
+    redirect: '/home',
   },
   {
     path: '/home',

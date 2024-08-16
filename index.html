@@ -10,8 +10,28 @@
 
 <body>
   <div id="app"></div>
+  <!-- <iframe src="http://60.205.115.52:9002" id="tsaigc" style="display:none"></iframe> -->
   <script type="module" src="/src/main.ts"></script>
   <script type="text/javascript" src="http://res.wx.qq.com/connect/zh_CN/htmledition/js/wxLogin.js"></script>
+  <!-- <script type="text/javascript">
+    window.onload = function () {
+      const cookies = document.cookie;
+      console.log(cookies)
+      const iframe = document.getElementById("tsaigc").contentWindow
+      console.log(iframe)
+      const targetDomain = 'http://60.205.115.52:9002';
+      iframe.postMessage(cookies, targetDomain);
+      window.addEventListener('message', (event) => {
+        console.log(event);
+        if (event.origin !== targetDomain) {
+          return; // 确保消息来自可信的源域
+        }
+        const cookies = event.data;
+        document.cookie = cookies; // 将接收到的cookie设置到当前域
+      });
+    }
+  </script> -->
+
 </body>
 
 </html>
