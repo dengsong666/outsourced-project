@@ -36,7 +36,7 @@ function onGetCode() {
           <n-form-item path="code">
             <n-input placeholder="请输入验证码" v-model:value="form.code" />
             <div w5em ml16px text-center>
-              <n-countdown v-if="isGetCode" :render="({ seconds }) => `${String(seconds).padStart(2, '0')}秒`"
+              <n-countdown v-if="isGetCode" :render="v => `${String(v.seconds).padStart(2, '0')}秒`"
                 :duration="59 * 1000" :active="isGetCode" />
               <n-button v-else type="primary" @click="onGetCode">验证码</n-button>
             </div>
