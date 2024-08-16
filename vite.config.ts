@@ -1,6 +1,7 @@
 import { defineConfig, loadEnv } from 'vite'
 import { resolve } from 'path'
 import vue from '@vitejs/plugin-vue'
+import { visualizer } from "rollup-plugin-visualizer";
 import Components from 'unplugin-vue-components/vite'
 import { NaiveUiResolver } from 'unplugin-vue-components/resolvers'
 import Unocss from 'unocss/vite'
@@ -12,6 +13,7 @@ export default ({ mode }) => {
   return defineConfig({
     plugins: [
       vue(),
+      visualizer(),
       AutoImport({
         resolvers: [NaiveUiResolver()],
         imports: ['vue', 'vue-router', 'pinia', '@vueuse/core', { 'lodash-es': [] }, {
@@ -85,8 +87,7 @@ export default ({ mode }) => {
           manualChunks(id) {
             if (id.includes('node_modules')) {
               const arr = id.toString()?.split('node_modules/')[2]?.split('/')
-              if (arr?.includes('vue')) return 'vue'
-              else return 'module'
+              return arr?.[0] ? arr[0] : 'module'
             } else return 'src'
           }
         }
