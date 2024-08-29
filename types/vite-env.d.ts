@@ -7,3 +7,11 @@ declare module 'vue-router' {
     hidden?: boolean // 菜单显示
   }
 }
+interface ImportMetaEnv {
+  readonly VITE_BASE_URL: string
+  // 更多环境变量...
+}
+
+interface ImportMeta {
+  readonly env: ImportMetaEnv
+}

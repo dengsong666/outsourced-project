@@ -2,17 +2,12 @@
 import type { GlobalThemeOverrides, MenuOption } from 'naive-ui';
 import { lightTheme } from 'naive-ui'
 import { aitools, my } from './menus';
-import { useCommon } from './store';
-const common = useCommon();
+import { useUser } from './store';
+const user = useUser();
 const menuOptions: MenuOption[] = [
   {
     label: '首页',
     key: 'home',
-  },
-  {
-    label: '我的',
-    key: 'user',
-    children: my
   },
   {
     label: '提示词',
@@ -45,6 +40,10 @@ const themeOverrides: GlobalThemeOverrides = {
     fontSizeMedium: isH5.value ? '8px' : '14px',
   }
 }
+user.token && user.getUserInfo()
+watchEffect(() => {
+  if (useSessionStorage('no-login', false).value) user.showLogin = true
+})
 </script>
 
 <template>
@@ -56,15 +55,21 @@ const themeOverrides: GlobalThemeOverrides = {
             <Suspense>
               <!-- 主要内容 -->
               <div flex-col h-full>
-                <div lt-md:hidden flex class="mx10%">
+                <div lt-md:hidden flex items-center class="mx10%">
                   <n-menu mode="horizontal" :options="menuOptions" @update-value="$router.push({ name: $event })" />
-                  <n-button type="primary" @click="common.showLogin = true">免费试用</n-button>
+                  <n-dropdown v-if="user.userinfo" trigger="hover" :options="my"
+                    @select="$event ? $router.push({ name: $event }) : user.logout()">
+                    <img w40px :src="user.userinfo.headImg" alt="">
+                  </n-dropdown>
+                  <n-button v-else type="primary" @click="user.showLogin = true">免费试用</n-button>
                 </div>
                 <div md:hidden fixed z1 top-32px right-32px @click="showDrawer = true">
                   <i w100px h100px transition :class="[showDrawer ? 'i-custom-close' : 'i-custom-menu']"></i>
                   <n-drawer v-model:show="showDrawer" width="150px" placement="left">
                     <div flex-col>
-                      <n-button m16px type="primary" @click="$router.push('/user')">免费试用</n-button>
+                      <img v-if="user.userinfo" w40px :src="user.userinfo.headImg" alt=""
+                        @click="$router.push('/user')">
+                      <n-button v-else m16px type="primary" @click="user.showLogin = true">免费试用</n-button>
                       <n-menu :indent="16" :options="menuOptions" @update-value="$router.push({ name: $event })" />
                     </div>
                   </n-drawer>

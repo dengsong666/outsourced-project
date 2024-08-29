@@ -1,3 +1,5 @@
+import { createDiscreteApi } from "naive-ui"
+
 // 类型
 export const Type = {
   value: (obj: any) => Object.prototype.toString.call(obj).replace(/^\[object (\S+)\]$/, '$1'),
@@ -20,13 +22,6 @@ export const Type = {
 export const strip = (num: number, precision = 12) => +parseFloat(isNaN(num) ? '0' : num.toPrecision(precision))
 // 倒计时
 export const countDown = (s: number, cb: Function, timer?: any) => (timer = setInterval(() => (s < 0 ? clearInterval(timer) : cb(s--)), 1000))
-// hms格式化
-export const hms = (s: number, f: [string, string, string] = [':', ':', '']) =>
-  new Date(s * 1000)
-    .toISOString()
-    .slice(11, 19)
-    .replace(/(\d+)/, (r, p) => `${parseInt(`${s / 86400}`) * 24 + +p}`)
-    .replace(/(\d+):(\d+):(\d+)/g, (r, p1, p2, p3) => `${p1 + f[0] + p2 + f[1] + p3 + f[2]}`)
 
-// 钱格式化
-export const moneyFormat = (v: number, delimiter = ',') => v.toString().replace(/(\d)(?=(?:\d{3})+$)/g, `$1${delimiter}`)
+export const { message, notification, dialog, loadingBar, modal } = createDiscreteApi(['message', 'dialog', 'notification', 'loadingBar', 'modal'])
+

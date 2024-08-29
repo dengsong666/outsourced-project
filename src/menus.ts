@@ -10,8 +10,9 @@ export const aitools: MenuOption[] = [
 ]
 
 export const my: MenuOption[] = [
-  { label: '个人资料', key: 'userinfo', },
-  { label: '我的账户', key: 'my-account', },
-  { label: '下载中心', key: 'download-center', },
-  { label: '会员中心', key: 'member-center', }
+  { label: '个人资料', key: 'userinfo' },
+  { label: '我的账户', key: 'my-account' },
+  { label: '下载中心', key: 'download-center' },
+  { label: '会员中心', key: 'member-center' },
+  { label: '退出登录', key: '' }
 ]

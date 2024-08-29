@@ -27,10 +27,11 @@
   },
   "include": [
     "types/*.d.ts",
+    "types/model/*.d.ts",
     "src/**/*.ts",
     "src/**/*.d.ts",
     "src/**/*.tsx",
-    "src/**/*.vue"
+    "src/**/*.vue",
   ],
   "references": [
     {
