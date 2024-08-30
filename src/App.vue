@@ -3,6 +3,7 @@ import type { GlobalThemeOverrides, MenuOption } from 'naive-ui';
 import { lightTheme } from 'naive-ui'
 import { aitools, my } from './menus';
 import { useUser } from './store';
+import avatar from '@/static/avatar.jpeg'
 const user = useUser();
 const menuOptions: MenuOption[] = [
   {
@@ -59,7 +60,7 @@ watchEffect(() => {
                   <n-menu mode="horizontal" :options="menuOptions" @update-value="$router.push({ name: $event })" />
                   <n-dropdown v-if="user.userinfo" trigger="hover" :options="my"
                     @select="$event ? $router.push({ name: $event }) : user.logout()">
-                    <img w40px :src="user.userinfo.headImg" alt="">
+                    <img w40px h40px :src="user.userinfo.headImg || avatar" alt="">
                   </n-dropdown>
                   <n-button v-else type="primary" @click="user.showLogin = true">免费试用</n-button>
                 </div>
@@ -80,7 +81,7 @@ watchEffect(() => {
               </div>
               <!-- 加载中状态 -->
               <template #fallback>
-                正在加载...
+                <n-spin absolute-center size="large" description="加载中..." />
               </template>
             </Suspense>
           </KeepAlive>

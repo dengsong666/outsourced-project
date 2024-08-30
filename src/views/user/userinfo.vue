@@ -6,7 +6,6 @@ import { FormInst, FormRules, UploadFileInfo } from 'naive-ui';
 
 const formRef = ref<FormInst>()
 const user = useUser()
-const baseApi = import.meta.env.VITE_BASE_URL
 const init = () => ({
   avatarSaveUrl: '',
   nickname: '',
@@ -36,7 +35,7 @@ watchEffect(() => {
     form.nickname = nickname
     form.contractWeChat = wechat
     form.contractPhone = phone
-    // form.introduce = introduce
+    form.introduce = introduce
   }
 })
 function onUploadFinish(e: any) {
@@ -48,7 +47,7 @@ function onUploadFinish(e: any) {
 <template>
   <n-form ref="formRef" label-placement="left" :label-width="80" :model="form" :rules="rules" class="md:w50%">
     <n-form-item label="头像">
-      <n-upload action="/api/v1/file/upload" :max="1" :headers="{ Authorization: user.token }" list-type="image-card"
+      <n-upload action="/api/v1/file/upload" :max="1" :headers="user.headers" list-type="image-card"
         @finish="onUploadFinish" @error="message.error('上传失败')">
         <img w-full h-full v-if="form.avatarSaveUrl" :src="form.avatarSaveUrl"></img>
         <span v-else md:text-24px text-128px>+</span>

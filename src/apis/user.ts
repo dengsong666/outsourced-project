@@ -64,3 +64,20 @@ export function updateUserInfo(data: { avatarSaveUrl: string; contractPhone: str
     data
   });
 }
+export function getUserBalanceTotal() {
+  return http.post({
+    url: '/v1/user-balance/get/balance'
+  });
+}
+export function getUserOrderList(data: PageReq) {
+  return http.post<PageRes>({
+    url: '/v1/video/order/getOrderDetail',
+    data
+  });
+}
+export function payPackage(data: { packageId: number, payType: number }) {
+  return http.post<Pay>({
+    url: '/v1/recharge/buy',
+    data
+  });
+}

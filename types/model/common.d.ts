@@ -27,3 +27,14 @@ interface Order {
   orderTime: string
   orderType: string
 }
+interface OrderStatus {
+  createTime: string
+  orderId: string
+  status: string
+  statusDesc: string
+}
+interface Pay {
+  orderId: string
+  payQrcode: string
+  payUrl: string
+}

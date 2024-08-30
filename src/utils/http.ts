@@ -1,18 +1,21 @@
 import axios from 'axios'
 import type { AxiosError, AxiosRequestConfig } from 'axios'
 import { loadingBar, message } from './common'
+interface CustomConfig extends AxiosRequestConfig {
+  loading?: boolean
+}
 const service = axios.create({
   baseURL: '/api',
-  timeout: 3000
+  timeout: 10000
 })
 const r =
   (method: string) =>
-    <T = any>(config: AxiosRequestConfig): Promise<T> =>
-      service.request({ ...config, method })
+    <T = any>(config: CustomConfig): Promise<T> =>
+      service.request({ loading: true, ...config, method })
 /* 请求拦截器 */
 service.interceptors.request.use(
   (config) => {
-    loadingBar.start()
+    (config as any).loading && loadingBar.start()
     //  伪代码
     const token = sessionStorage.getItem('token')
     if (token) {
@@ -26,7 +29,7 @@ service.interceptors.request.use(
 service.interceptors.response.use(
   (response) => {
     const { code = 0, message: msg = '', data = response.data } = response.data as Res
-    loadingBar.finish()
+    (response.config as any).loading && loadingBar.finish()
     console.log('%c [ data ]-31', 'font-size:13px; background:pink; color:#bf2c9f;', data)
     if (!code) return data
     else {

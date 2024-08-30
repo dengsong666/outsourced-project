@@ -1,35 +1,36 @@
-export function usePagination(
-  cb: any,
-  sizeOption: Array<number> = [10, 20, 50, 100, 200],
-): any {
-  const pagination = reactive({
-    current: 1,
-    total: 0,
-    size: sizeOption[0],
-    sizeOption,
-    onPageChange: (page: number, extraData?: object) => {
-      pagination.current = page
-      return extraData ? cb(extraData) : cb()
-    },
-    onSizeChange: (size: number, extraData?: object) => {
-      pagination.current = 1
-      pagination.size = size
-      return extraData ? cb(extraData) : cb()
-    },
-    setTotal: (total: number) => {
-      pagination.total = total
-    },
-    reset() {
-      pagination.current = 1
-      pagination.total = 0
-      pagination.size = pagination.sizeOption[0]
-    },
-  })
+import { PaginationProps } from "naive-ui";
 
-  return [
-    pagination,
-    pagination.onPageChange,
-    pagination.onSizeChange,
-    pagination.setTotal,
-  ]
+export function usePaging<R = any>(getList: (...args: any[]) => Promise<PageRes<R>>, initParams: Record<string, any> = {}) {
+  const pageing = reactive<PaginationProps>({
+    page: 1,
+    pageSize: 3,
+    pageCount: 0,
+    showSizePicker: true,
+    pageSizes: [3, 5, 7],
+    onUpdatePageSize: (pageSize) => pageing.pageSize = pageSize,
+    onUpdatePage: page => pageing.page = page,
+  })
+  const params = ref<Record<string, any>>(initParams)
+  const list = ref<R[]>()
+  watch([pageing, params], () => {
+    getList({ pageNum: pageing.page, pageSize: pageing.pageSize, ...params.value })
+      .then(res => {
+        pageing.page = res.pageIndex
+        pageing.pageSize = res.pageSize
+        pageing.pageCount = res.totalCount
+        list.value = res.dataList
+      })
+  }, { immediate: true })
+
+  return { pageing, list, params }
+}
+export function useList<R = any>(getList: (...args: any[]) => Promise<PageRes<R>>) {
+  const list = ref<R[]>()
+  getList({ pageNum: 1, pageSize: 100 })
+    .then(res => {
+      console.log(res);
+
+      list.value = res.dataList
+    })
+  return list
 }
