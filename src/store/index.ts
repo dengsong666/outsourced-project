@@ -1,4 +1,5 @@
 import { getUserBalanceTotal, getUserInfo } from '@/apis'
+import { getStorage } from '@/utils'
 import { createPinia, defineStore } from 'pinia'
 import { App } from 'vue'
 const store = createPinia()
@@ -14,24 +15,18 @@ export const useCommon = defineStore('common', {
 })
 export const useUser = defineStore('user', {
   state: () => ({
-    token: localStorage.getItem('token') || '',
+    token: getStorage('token') as null | string,
     userinfo: null as null | UserInfo,
     showLogin: false,
     account: null as null | { balance: number, integral: number }
   }),
   getters: {
-    headers: (state) => ({ Authorization: state.token })
+    headers: (state) => ({ Authorization: state.token || '' })
   },
   actions: {
-    getUserInfo() {
+    init() {
       getUserInfo().then(res => this.userinfo = res)
       getUserBalanceTotal().then(res => this.account = res)
     },
-    logout() {
-      sessionStorage.removeItem('token')
-      localStorage.removeItem('token')
-      this.token = ''
-      this.userinfo = null
-    }
   }
 })

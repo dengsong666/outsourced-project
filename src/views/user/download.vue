@@ -1,6 +1,6 @@
 <script lang='ts' setup>
 import { getDownloadList } from '@/apis';
-import { useList } from '@/hooks/paging';
+import { useList } from '@/hooks';
 const list = useList<Video>(getDownloadList)
 </script>
 

@@ -2,6 +2,7 @@
 import { useUser } from '@/store';
 import { byCodeLogin, getWeChatQR, sendCode } from '@/apis';
 import { FormInst, FormRules } from 'naive-ui';
+import { delStorage } from '@/utils';
 const user = useUser();
 const form = reactive({
   phone: '18161246504',
@@ -23,10 +24,9 @@ function onGetCode() {
 function onLogin() {
   refForm.value?.validate((errors) => {
     errors || byCodeLogin(form).then(res => {
-      sessionStorage.setItem('token', res.token)
       user.token = res.token
       user.showLogin = false
-      user.getUserInfo()
+      user.init()
     })
   })
 }
@@ -35,7 +35,15 @@ function onGetQR(tab: string, accessPage) {
     wechatQR.value = res.weQrUrl
   })
 }
-watch([() => user.token, autoLogin], ([token, auto]) => auto ? localStorage.setItem('token', token) : localStorage.removeItem('token'))
+watchEffect(() => {
+  if (user.token) {
+    sessionStorage.setItem('token', user.token)
+    autoLogin.value && localStorage.setItem('token', user.token)
+  } else {
+    user.userinfo = null
+    delStorage('token')
+  }
+})
 // https://cloud.tencent.com/developer/article/1677630
 </script>
 
@@ -52,12 +60,17 @@ watch([() => user.token, autoLogin], ([token, auto]) => auto ? localStorage.setI
             <n-input placeholder="请输入验证码" v-model:value="form.code" />
             <div w5em ml16px text-center>
               <n-countdown v-if="isGetCode" :render="v => `${String(v.seconds).padStart(2, '0')}秒`"
-                :duration="59 * 1000" :active="isGetCode" />
+                :duration="59 * 1000" :active="isGetCode" @finish="isGetCode = false" />
               <n-button v-else type="primary" @click="onGetCode">验证码</n-button>
             </div>
           </n-form-item>
           <n-form-item>
-            <n-checkbox v-model:checked="autoLogin">下次自动登录</n-checkbox>
+            <n-checkbox v-model:checked="autoLogin">
+              <n-popover trigger="hover">
+                <template #trigger>下次自动登录</template>
+                <span>关闭标签页/浏览器后，24h内无需再次手动登录</span>
+              </n-popover>
+            </n-checkbox>
             <span text-gray mlauto>没有注册自动注册</span>
           </n-form-item>
         </n-form>

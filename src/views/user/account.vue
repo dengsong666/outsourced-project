@@ -1,6 +1,6 @@
 <script lang='ts' setup>
 import { getUserOrderList } from '@/apis';
-import { usePaging } from '@/hooks/paging';
+import { usePaging } from '@/hooks';
 import { useUser } from '@/store';
 import { formatDate } from '@vueuse/core';
 import { TableColumn } from 'naive-ui/es/data-table/src/interface';

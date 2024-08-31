@@ -5,6 +5,7 @@ import { aitools, my } from './menus';
 import { useUser } from './store';
 import avatar from '@/static/avatar.jpeg'
 const user = useUser();
+const route = useRoute();
 const menuOptions: MenuOption[] = [
   {
     label: '首页',
@@ -41,10 +42,16 @@ const themeOverrides: GlobalThemeOverrides = {
     fontSizeMedium: isH5.value ? '8px' : '14px',
   }
 }
-user.token && user.getUserInfo()
-watchEffect(() => {
-  if (useSessionStorage('no-login', false).value) user.showLogin = true
+user.token && user.init()
+
+watch(() => route.hash, hash => {
+  if (hash === '#login') {
+    user.token = null
+    user.showLogin = true
+    window.location.hash = ''
+  }
 })
+
 </script>
 
 <template>
@@ -59,7 +66,7 @@ watchEffect(() => {
                 <div lt-md:hidden flex items-center class="mx10%">
                   <n-menu mode="horizontal" :options="menuOptions" @update-value="$router.push({ name: $event })" />
                   <n-dropdown v-if="user.userinfo" trigger="hover" :options="my"
-                    @select="$event ? $router.push({ name: $event }) : user.logout()">
+                    @select="$event ? $router.push({ name: $event }) : user.token = null">
                     <img w40px h40px :src="user.userinfo.headImg || avatar" alt="">
                   </n-dropdown>
                   <n-button v-else type="primary" @click="user.showLogin = true">免费试用</n-button>

@@ -1,5 +1,7 @@
 import { createDiscreteApi } from "naive-ui"
 
+export const getStorage = (key: string) => sessionStorage.getItem(key) || localStorage.getItem(key)
+export const delStorage = (key: string) => (sessionStorage.removeItem(key), localStorage.removeItem(key))
 // 类型
 export const Type = {
   value: (obj: any) => Object.prototype.toString.call(obj).replace(/^\[object (\S+)\]$/, '$1'),

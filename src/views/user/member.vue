@@ -1,6 +1,6 @@
 <script lang='ts' setup>
 import { getMemberPackageList, payPackage } from '@/apis';
-import { useList } from '@/hooks/paging';
+import { useList } from '@/hooks';
 import { message } from '@/utils';
 const member = reactive({
   packageId: undefined as unknown as number,
