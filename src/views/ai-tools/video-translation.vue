@@ -45,6 +45,7 @@ const progress = reactive({
   status: 'default' as any,
   desc: '就绪'
 })
+const progressPercent = useLocalStorage('video-translation-progress', 0)
 getVideoGenerateInfo().then((res) => videoGenerateInfo.value = res)
 function onTranslate() {
   if (!form.sourceUrl) message.error('请上传视频文件')
@@ -57,10 +58,10 @@ function onTranslate() {
           const status = +res.status
           progress.desc = res.statusDesc
           progress.status = ['info', 'success', 'error', 'warning', 'default'].at(status) ?? 'default'
-          if ([0, 3].includes(status) && progress.percent <= 99) progress.percent += (Math.random() / 10)
+          if ([0, 3].includes(status) && progressPercent.value <= 99) progressPercent.value += (Math.random() / 10)
           else if (status == 1) {
-            if (progress.percent <= 90) progress.percent += (Math.random() * 10)
-            else progress.percent = 100
+            if (progressPercent.value <= 90) progressPercent.value += (Math.random() * 10)
+            else progressPercent.value = 100
             clearInterval(timer)
           }
         }), 5000)
@@ -89,9 +90,9 @@ function onUploadFinish(e: any) {
         </n-upload>
       </n-spin>
     </div>
-    <n-progress flex-1 my64px type="line" :percentage="progress.percent" :status="progress.status"
+    <n-progress flex-1 my64px type="line" :percentage="progressPercent" :status="progress.status"
       :processing="progress.status == 'info'" indicator-text-color="blue" rail-color="white">
-      {{ progress.percent.toFixed(2) + '% ' + progress.desc }}
+      {{ progressPercent.toFixed(2) + '% ' + progress.desc }}
     </n-progress>
     <div md:w200px md:h200px w40vw h40vw>
       <!-- <video v-if="true" h-full w-full

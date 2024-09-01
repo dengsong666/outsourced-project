@@ -10,7 +10,8 @@ const list = useList<Video>(getDownloadList)
   </n-alert>
   <div md:grid-1-4-24 grid-1-2-48 my16px>
     <template v-for="item in list" :key="item.videoUrl">
-      <video :src="item.videoUrl" :poster="item.coverUrl" rd-16px md:h200px w100% h400px>
+      <video :src="'http://60.205.115.52:8082/api/v1/' + item.videoUrl" controls :poster="item.coverUrl" rd-16px
+        md:h200px w-full h400px>
       </video>
     </template>
   </div>

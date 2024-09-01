@@ -1,7 +1,7 @@
 <script lang='ts' setup>
 import { getMemberPackageList, payPackage } from '@/apis';
 import { useList } from '@/hooks';
-import { message } from '@/utils';
+import { message, notification } from '@/utils';
 const member = reactive({
   packageId: undefined as unknown as number,
   payType: 1
@@ -12,7 +12,6 @@ const pay = reactive({
     { label: '支付宝', value: 2, color: '#01a2ed', icon: 'i-custom-alipay' }
   ],
   qr: '',
-  url: ''
 })
 const list = useList<MemberPackage>(getMemberPackageList)
 const payType = computed(() => pay.options.find(item => item.value === member.payType))
@@ -23,8 +22,8 @@ function onPay() {
   if (member.packageId) {
     payPackage(member).then(res => {
       pay.qr = res.payQrcode
-      pay.url = res.payUrl
       isPay.value = true
+      if (useMediaQuery('(max-width: 768px)')) window.open(res.payUrl)
     })
   } else message.warning('请选择会员套餐')
 }
@@ -51,7 +50,8 @@ function onPay() {
   4. 购买后可自动找回30天内过期的点数
   5. 购买后非软件问题不支持退款，请试用满意后再购买
 </pre>
-  <n-modal v-model:show="isPay" preset="dialog" title="支付订单" w500px>
+  <n-modal v-model:show="isPay" preset="dialog" title="支付订单" w500px
+    @before-hide="notification.info({ title: '支付结果', content: '稍后在我的账户中交易明细查阅', duration: 5000 })">
     <div grid-2-2-16 p16px items-center text-white my16px class="bg rd-16px">
       <span>支付金额</span>
       <span>购买：{{ group?.integral }}点</span>
@@ -73,7 +73,7 @@ function onPay() {
             </n-radio>
           </div>
         </n-radio-group>
-        <div flex-col items-center>
+        <div lt-md:hidden flex-col items-center>
           <img w200px h200px my16px :src="pay.qr" alt="">
           <span text-12px text-gray>请使用{{ payType?.label }}扫码支付</span>
         </div>
