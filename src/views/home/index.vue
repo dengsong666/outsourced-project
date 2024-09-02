@@ -21,9 +21,9 @@ console.log(isPaused)
     </n-carousel>
     <div grid-1-2-32 items-center rd-24px p100px md:mx300px mx100px my50px class="bg-#d0eff2">
       <div flex-col>
-        <div text-48px font-600>翻译视频到多国语言</div>
-        <div my16px text-24px>一键翻译20多种国家语言</div>
-        <div mxauto mt48px text-white px24px py12px rd-24px class="gradient">
+        <div md:text-48px font-600>翻译视频到多国语言</div>
+        <div my16px md:text-24px text-12px>一键翻译20多种国家语言</div>
+        <div mxauto mt48px text-white lt-md:text-14px px24px py12px rd-24px class="gradient">
           免费试用
         </div>
       </div>
@@ -36,7 +36,7 @@ console.log(isPaused)
           <div v-show="isPaused?.rawVideo" class="rd-50%" p4px absolute-center bg-gray-200>
             <i w48px h48px i-custom-play></i>
           </div>
-          <span mt8px>原视频</span>
+          <span mt8px lt-md:text-12px>原视频</span>
         </div>
         <div relative flex-col items-center @click="isPaused.video ? refVideo.play() : refVideo.pause()">
           <video ref="refVideo" w324px h576px rd-24px @playing="isPaused.video = false" @pause="isPaused.video = true">
@@ -45,15 +45,15 @@ console.log(isPaused)
           <div v-show="isPaused?.video" class="rd-50%" p4px absolute-center bg-gray-200>
             <i w48px h48px i-custom-play></i>
           </div>
-          <span mt8px>翻译后视频</span>
+          <span mt8px lt-md:text-12px>翻译后视频</span>
         </div>
       </div>
     </div>
     <div grid-1-2-32 items-center rd-24px p100px md:mx300px mx100px my50px class="bg-#d0eff2">
       <div flex-col>
-        <div text-48px font-600>删除背景图</div>
-        <div my16px text-24px>只需点击一下鼠标，即可立即移除图像背景</div>
-        <div mxauto mt48px text-white px24px py12px rd-24px class="gradient">
+        <div md:text-48px font-600>删除背景图</div>
+        <div my16px md:text-24px text-12px>只需点击一下鼠标，即可立即移除图像背景</div>
+        <div mxauto mt48px text-white lt-md:text-14px px24px py12px rd-24px class="gradient">
           免费试用
         </div>
       </div>

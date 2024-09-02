@@ -4,7 +4,7 @@ import { useList } from '@/hooks';
 import { message, notification } from '@/utils';
 const member = reactive({
   packageId: undefined as unknown as number,
-  payType: 1
+  payType: undefined as unknown as number,
 })
 const pay = reactive({
   options: [
@@ -18,14 +18,14 @@ const payType = computed(() => pay.options.find(item => item.value === member.pa
 const group = computed(() => list.value?.find(item => item.id === member.packageId))
 const isPay = ref(false)
 
-function onPay() {
-  if (member.packageId) {
-    payPackage(member).then(res => {
-      pay.qr = res.payQrcode
-      isPay.value = true
-      if (useMediaQuery('(max-width: 768px)')) window.open(res.payUrl)
-    })
-  } else message.warning('请选择会员套餐')
+function onPay(value: number) {
+  pay.qr = ''
+  member.payType = value
+  payPackage(member).then(res => {
+    pay.qr = res.payQrcode
+    isPay.value = true
+    if ('ontouchstart' in document.documentElement) window.open(res.payUrl)
+  })
 }
 </script>
 
@@ -42,7 +42,8 @@ function onPay() {
     </div>
   </n-radio-group>
 
-  <n-button my16px mxauto type="primary" @click="onPay">立即购买</n-button>
+  <n-button md:my16px my32px mxauto type="primary"
+    @click="member.packageId ? isPay = true : message.warning('请选择会员套餐')">立即购买</n-button>
   <pre mtauto mxauto>
   1. 用户使用智能剪辑、文字翻译、语音翻译等业务以30秒为计费单位，单个视频不足30秒按30秒计。
   2. 不同业务计费不相同，同时使用不同业务时计费会相加，例如:同时使用去重*语音翻译*基础配音角色，则每30秒计费1+2*1=4点
@@ -50,8 +51,7 @@ function onPay() {
   4. 购买后可自动找回30天内过期的点数
   5. 购买后非软件问题不支持退款，请试用满意后再购买
 </pre>
-  <n-modal v-model:show="isPay" preset="dialog" title="支付订单" w500px
-    @before-hide="notification.info({ title: '支付结果', content: '稍后在我的账户中交易明细查阅', duration: 5000 })">
+  <n-modal v-model:show="isPay" preset="dialog" title="支付订单" w500px>
     <div grid-2-2-16 p16px items-center text-white my16px class="bg rd-16px">
       <span>支付金额</span>
       <span>购买：{{ group?.integral }}点</span>
@@ -62,7 +62,7 @@ function onPay() {
     <div flex>
       支付方式：
       <div flex-col>
-        <n-radio-group v-model:value="member.payType">
+        <n-radio-group v-model:value="member.payType" @update:value="onPay">
           <div flex gap16px>
             <n-radio v-for="item in pay.options" :key="item.value" :value="item.value" class="pay-type">
               <div flex items-center gap4px rd-4px outline-1px outline-solid px4px py2px
@@ -73,11 +73,17 @@ function onPay() {
             </n-radio>
           </div>
         </n-radio-group>
-        <div lt-md:hidden flex-col items-center>
-          <img w200px h200px my16px :src="pay.qr" alt="">
+        <div v-if="member.payType" lt-md:hidden flex-col items-center>
+          <n-spin w200px h200px py8px :show="!pay.qr">
+            <img v-show="pay.qr" w-full :src="pay.qr" alt="">
+          </n-spin>
           <span text-12px text-gray>请使用{{ payType?.label }}扫码支付</span>
         </div>
       </div>
+    </div>
+    <div text-center md:pt16px pt80px>
+      <n-button type="primary"
+        @click="isPay = false, notification.info({ title: '支付结果', content: '稍后在我的账户中交易明细查阅', duration: 5000 })">我已支付</n-button>
     </div>
   </n-modal>
 </template>

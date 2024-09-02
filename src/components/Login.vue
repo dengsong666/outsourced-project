@@ -48,7 +48,7 @@ watchEffect(() => {
 </script>
 
 <template>
-  <n-modal v-model:show="user.showLogin" preset="card" md:w600px w90vw>
+  <n-modal v-modelshow="user.showLogin" preset="card" md:w600px w90vw>
     <n-tabs default-value="code" size="large" justify-content="space-evenly"
       @update:value="onGetQR($event, $route.path)">
       <n-tab-pane name="code" tab="验证码登录">
@@ -58,10 +58,10 @@ watchEffect(() => {
           </n-form-item>
           <n-form-item path="code">
             <n-input placeholder="请输入验证码" v-model:value="form.code" />
-            <div w5em ml16px text-center>
+            <div flex-basis-8em flex-shrink-0 text-center>
               <n-countdown v-if="isGetCode" :render="v => `${String(v.seconds).padStart(2, '0')}秒`"
                 :duration="59 * 1000" :active="isGetCode" @finish="isGetCode = false" />
-              <n-button v-else type="primary" @click="onGetCode">验证码</n-button>
+              <n-button v-else float-right type="primary" @click="onGetCode">验证码</n-button>
             </div>
           </n-form-item>
           <n-form-item>

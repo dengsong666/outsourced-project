@@ -170,4 +170,14 @@ function onUploadFinish(e: any) {
     height: 100%;
   }
 }
+
+@media screen and (max-width: 768px) {
+  :deep(.n-progress-content) {
+    flex-direction: column;
+
+    .n-progress-graph {
+      width: 100%;
+    }
+  }
+}
 </style>

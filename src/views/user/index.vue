@@ -5,7 +5,7 @@ import { my } from '@/menus';
 </script>
 
 <template>
-  <PCMenu :menus="my" />
+  <PCMenu :menus="my.filter((item) => item.key)" />
 </template>
 
 <style scoped lang='scss'>
