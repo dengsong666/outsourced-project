@@ -37,12 +37,7 @@ export const basicRoutes: RouteRecordRaw[] = [
         path: 'member-center',
         name: 'member-center',
         component: () => import('@/views/user/member.vue')
-      },
-      {
-        path: 'content',
-        name: 'content',
-        component: () => import('@/views/user/content.vue')
-      },
+      }
     ]
   },
   {

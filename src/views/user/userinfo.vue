@@ -24,7 +24,7 @@ const rules: FormRules = {
 }
 function onSave() {
   formRef.value?.validate().then(() => {
-    updateUserInfo(form).then(() => user.getUserInfo())
+    updateUserInfo(form).then(() => user.init())
   })
 }
 watchEffect(() => {

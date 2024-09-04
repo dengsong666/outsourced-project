@@ -18,6 +18,7 @@ export const useUser = defineStore('user', {
     token: getStorage('token') as null | string,
     userinfo: null as null | UserInfo,
     showLogin: false,
+    showProtocol: false,
     account: null as null | { balance: number, integral: number }
   }),
   getters: {

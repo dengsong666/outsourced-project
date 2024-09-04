@@ -64,17 +64,30 @@ export function updateUserInfo(data: { avatarSaveUrl: string; contractPhone: str
     data
   });
 }
+/**
+ * 获取用户余额总数
+ */
 export function getUserBalanceTotal() {
   return http.post({
     url: '/v1/user-balance/get/balance'
   });
 }
+
+/**
+ * 获取用户订单列表
+ * @param data 分页请求参数，用于指定获取订单列表的分页信息
+ */
 export function getUserOrderList(data: PageReq) {
   return http.post<PageRes>({
     url: '/v1/video/order/getOrderDetail',
     data
   });
 }
+
+/**
+ * 支付套餐
+ * @param data 包含套餐ID和支付类型的对象，用于指定购买的套餐和支付方式
+ */
 export function payPackage(data: { packageId: number, payType: number }) {
   return http.post<Pay>({
     url: '/v1/recharge/buy',
