@@ -12,7 +12,7 @@ import Protocol from './Protocol.vue';
 const user = useUser();
 // 定义表单数据模型
 const form = reactive({
-  phone: '18161246504',
+  phone: '',
   code: '',
 });
 // 微信二维码URL引用

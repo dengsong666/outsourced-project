@@ -184,7 +184,7 @@ watch(isEstimated, ([sourceUrl, subtitleEnable, timbreId]) => {
   <div flex-col items-center text-12px text-gray>
     <div flex gap-24px items-center>
       预计消耗积分：{{ estimatedPrice }}
-      <n-button ml16px type="primary" attr-type="submit" @click="onTranslate">
+      <n-button type="primary" attr-type="submit" @click="onTranslate">
         翻译
       </n-button>
       积分余额：{{ user.account?.integral }}
