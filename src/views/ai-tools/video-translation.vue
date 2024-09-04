@@ -3,6 +3,7 @@ import { createVideoTask, getEstimatedPrice, getTaskOrderStatus, getVideoGenerat
 import { useUser } from '@/store';
 import { message } from '@/utils';
 import { FormInst, FormRules } from 'naive-ui';
+import { Status } from 'naive-ui/es/progress/src/interface';
 
 // 使用useUser钩子获取用户信息
 const user = useUser()
@@ -68,7 +69,7 @@ const videoUrl = ref('')
 const progress = reactive({
   uploading: false,
   percent: 0,
-  status: 'default',
+  status: 'default' as Status,
   desc: '就绪'
 })
 
@@ -96,7 +97,7 @@ function onTranslate() {
         const timer = setInterval(() => getTaskOrderStatus({ orderId }).then(res => {
           const status = +res.status
           progress.desc = res.statusDesc
-          progress.status = ['info', 'success', 'error', 'warning', 'default'].at(status) ?? 'default'
+          progress.status = (['info', 'success', 'error', 'warning', 'default'].at(status) ?? 'default') as Status
           if ([0, 3].includes(status) && progressPercent.value <= 99) progressPercent.value += (Math.random() / 10)
           else if (status == 1) {
             if (progressPercent.value <= 90) progressPercent.value += (Math.random() * 10)
@@ -144,7 +145,8 @@ watch(isEstimated, ([sourceUrl, subtitleEnable, timbreId]) => {
     <div md:w200px md:h200px w40vw h40vw>
       <!-- <video v-if="videoUrl" h-full w-full
         src="http://60.205.115.52:8082/api/v1/video/mp4/7d9fa309-80ce-48e7-b534-db0337cd3e3d.mp4"></video> -->
-      <div @click="$router.push({ name: 'download-center' })" grid-center class="rd-8px" text-white bg-black h-full w-full>
+      <div @click="$router.push({ name: 'download-center' })" grid-center class="rd-8px" text-white bg-black h-full
+        w-full>
         <i md:w80px md:h80px class="w50% h50%" i-custom-download></i>
       </div>
     </div>
